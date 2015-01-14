@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://code.createjs.com/createjs-2013.05.14.min.js"></script>
+	<script type="text/javascript" src="libs/Box2dWeb-2.1.a.3.min.js"></script>
+	<script type="text/javascript" src="libs/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="scripts/level1.js"></script>
+	<script type="text/javascript" src="scripts/main.js"></script>
+	<script type="text/javascript" src="scripts/jaxi.js"></script>
+	<script type="text/javascript" src="scripts/choco.js"></script>
+	<script type="text/javascript" src="scripts/presentation.js"></script>
+	<script src="//connect.soundcloud.com/sdk.js"></script>
+	<link rel="stylesheet" href="styles/jaxi.css" />
+
+	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Kite+One' rel='stylesheet' type='text/css'>
+
+	<title></title>
+</head>
+
+
+<body onload="Main();" >
+
+<div class="gameFrame">
+
+	<video id="bgbVideo" class="videoContainer" width="1024" height="768" autoplay loop>
+		<source src="assets/videos/Pink_FacilityOutside.ogv" type="video/ogg" />
+		<source src="assets/videos/Pink_FacilityOutside.mp4" type="video/mp4" />
+	</video>
+	<canvas id="mainStage" class="gameContainer" width="1024" height="768" ></canvas>
+	<canvas id="debugCanvas" class="gameContainer" width="1024" height="768" ></canvas>
+	<div id="debug" style="position: absolute; top: 840px;">Show/Hide Debug</div>
+
+	<div id="loader"></div>
+
+	<div id="editor"></div>
+	<script src="scripts/ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		var editor = ace.edit("editor");
+		editor.setTheme("ace/theme/clouds");
+		editor.getSession().setMode("ace/mode/javascript");
+		editor.focus();
+	</script>
+	<div id="codeControls">
+		<img src="assets/images/mcPinkIconWhite.png">
+		<button class="css3button" onclick="runCode()"><img src="assets/images/mcPlayIcon.png"> <span style="position: relative; top: -5px;">Run Code</span></button>
+		<button id="btnHandbook" style="opacity: 0;" class="css3button" onclick="showHandbook()"><img src="assets/images/handbookIcon.png"> <span style="position: relative; top: -5px;">Handbook</span></button>
+	</div>
+
+	<div id="msgBox" class="msgBox">
+		<table>
+			<tr>
+				<td id="msgBoxImage" style="vertical-align: top;"><img src="assets/images/mcPinkIcon.png"></td>
+				<td id="msgBox_MessageArea" style="padding-left: 12px; vertical-align: top;"></td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="soundCloudTab" class="soundCloudTab" >
+		<table style="width: 100%">
+			<tr>
+				<td>
+					<b><div id="txtTitle"></div></b>
+					<div id="txtArtist"></div>
+				</td>
+				<td style="text-align: right;"><img src="assets/images/soundcloud-logo.png" /></td>
+
+			</tr>
+		</table>
+	</div>
+
+	<div id="speechContainer">
+		<div id="speechBubble"><div id="wordsBubble"></div></div>
+	</div>
+
+	<div id="handbook">
+		<div id="handbookControls">
+			<button class="css3button" onclick="hideHandbook();"><span>X</span></button>
+		</div>
+		<div><span id="handbookContent"></span></div>
+	</div>
+
+	<div id="loadScreen">
+		 <div class="loadScreenAssets">
+			<img src="assets/images/logo.png"><br>
+			<img src="assets/images/runningbot.gif"><br>
+			<img src="assets/images/loading.png">
+		</div>
+
+	</div>
+
+</div>
+
+
+
+
+
+<script>
+
+</script>
+
+</body>
+
+</html>

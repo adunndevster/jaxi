@@ -1,0 +1,251 @@
+body
+{
+	background-color: #0b0b0b;
+	background-image: url("../assets/images/Pink_Grey.png");
+}
+
+.gameFrame
+{
+	width: 1024px;
+	height: 768px;
+	margin: 0 auto;
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+.txtCommand
+{
+	width: 300px;
+	height: 200px;
+	border-style: solid;
+}
+
+.gameContainer
+{
+	position: absolute;
+}
+
+.videoContainer
+{
+	position: absolute;
+}
+
+
+
+#editor {
+	position: absolute;
+	border-style: solid;
+	border-color: #443344;
+	opacity: .85;
+	border-radius: 12px;
+	border-width: 20px;
+	border-bottom-width: 60px;
+	border-top-width: 50px;
+	margin-top: 20px;
+	margin-left: 560px;
+	width: 400px;
+	height: 620px;
+	z-index: 1000;
+}
+
+#codeControls
+{
+	position: absolute;
+	margin-top: 20px;
+	margin-left: 560px;
+	width: 440px;
+	padding-top: 10px;
+	padding-left: 20px;
+	z-index: 1001;
+}
+
+button.css3button
+{
+	position: relative;
+	margin-top: -5;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #ffffff;
+	padding: 2px 10px;
+
+	border-color: #FFFFFF;
+	border-style: solid;
+	border-radius: 6px;
+	border-width: 3px;
+	height: 31px;
+
+	background-color: transparent;
+
+
+}
+
+button.css3button:hover
+{
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #ffffff;
+	padding: 2px 10px;
+
+	border-color: #BE6796;
+	border-style: solid;
+	border-radius: 6px;
+	border-width: 3px;
+	height: 31px;
+
+	background-color: transparent;
+
+
+}
+
+
+.msgBox
+{
+	z-index: 4;
+	position: absolute;
+	margin-top: 20px;
+	margin-left: 20px;
+	background-color: #F9F500;
+	border-color: #953369;
+	border-style: solid;
+	border-radius: 8px;
+	border-width: 6px;
+	padding: 16px;
+	font-size: 12pt;
+	font-family: Arial;
+	color: #953369;
+	max-width: 460px;
+	-webkit-box-shadow: 0px 0px 10px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    0px 0px 10px rgba(50, 50, 50, 0.75);
+	box-shadow:         0px 0px 10px rgba(50, 50, 50, 0.75);
+	display: block;
+}
+
+.soundCloudTab
+{
+	z-index: 2;
+	position: relative;
+	top: 670px;
+	left: -200px;
+	width: 250px;
+	padding: 20px 20px;
+	background-color: #FFFFFF;
+	border-color: #333333;
+	border-style: solid;
+	border-radius: 0px;
+	border-width: 1px;
+	-webkit-box-shadow: 0px 0px 10px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    0px 0px 10px rgba(50, 50, 50, 0.75);
+	box-shadow:         0px 0px 10px rgba(50, 50, 50, 0.75);
+	float: left;
+	display: block;
+
+	font-size: 10pt;
+	font-family: Arial;
+	color: #666666;
+}
+
+#speechContainer
+{
+	position: relative;
+	z-index: 1003;
+	font-family: 'Kite One', sans-serif;
+	font-weight: bold;
+	font-size: 14pt;
+	left: -2000px;
+	top: 300px;
+}
+
+#speechBubble
+{
+	max-width: 300px;
+}
+
+#wordsBubble
+{
+	text-align: left;
+	clear: left;
+	float: left;
+	vertical-align: top;
+	border-style: solid;
+	background-color: #FFFFFF;
+	padding: 15px;
+	border-radius: 8px;
+}
+
+
+#handbook
+{
+	position: absolute;
+
+	z-index: 1010;
+	width: 400px;
+	height: 500px;
+	left: 16%;
+	opacity: 0;
+	top: 80px;
+	max-height: 500px;
+	background-color: #FFFFFF;
+	border-style: solid;
+	border-color: #983265;
+	border-radius: 12px;
+	border-width: 20px;
+	border-bottom-width: 60px;
+	border-top-width: 50px;
+
+	-webkit-box-shadow: 0px 0px 10px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    0px 0px 10px rgba(50, 50, 50, 0.75);
+	box-shadow:         0px 0px 10px rgba(50, 50, 50, 0.75);
+
+}
+
+#handbookContent
+{
+	position: relative;
+	padding: 10px;
+	top: -31px;
+	display: inline;
+	height: 495px;
+	overflow: scroll;
+	clear: left;
+	float: left;
+	text-align: left;
+	display: block;
+}
+
+#handbookControls
+{
+	position: relative;
+	right: -765px;
+	top: -40px;
+}
+
+#loadScreen
+{
+	position: absolute;
+	width: 1024px;
+	height: 800px;
+	overflow: hidden;
+	background-color: #983265;
+	z-index: 10000;
+}
+
+.loadScreenAssets
+{
+	margin: 0 auto;
+	position: relative;
+	top: 130px;
+	text-align: center;
+}
+
+.codeExample
+{
+	font-family: 'Source Code Pro', sans-serif;
+	font-size: 12pt;
+	background-color: #443344;
+	color: #FFFFFF;
+	line-height: 22pt;
+	padding: 6px;
+}
