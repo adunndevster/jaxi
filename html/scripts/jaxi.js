@@ -125,7 +125,7 @@ var jaxi = (function(){
 		pickUp: pickUp,
 		say: say,
 		die: die,
-		follow: follow,
+		follow: follow, 
 		addAction: addAction,
 		clearActions: clearActions,
 		doActions: doActions
@@ -138,30 +138,64 @@ jaxi.isAlive = true;
 
 
 //non jaxi functions...
-
+ 
 function runCode()
 {
 	//var commandString = document.getElementById('txtCommand').innerHTML;
-	var commandString = editor.getValue();
-	//commandString = commandString.replace(/<br>/g, "");
+        var commandString = editor.getValue();
+        //commandString = commandString.replace(/<br>/g, "");
 
-	try
-	{
-		eval(commandString);
-	} catch(err)
-	{
-		alert(err.message);
-	}
-
-	editor.focus();
-
-	hideSpeechBubble();
+        commandString = commandString.replace(/jaxi./g,"");
+        
+        function initFunc(interpreter, scope) {
+            var jump = function (power) { 
+                return interpreter.createPrimitive(jaxi.jump(power));
+            };
+            var run = function (distance) { 
+                return interpreter.createPrimitive(jaxi.run(distance));
+            };
+            var pickUp = function () { 
+                return interpreter.createPrimitive(jaxi.pickUp());
+            };
+            var say = function (words) { 
+                return interpreter.createPrimitive(jaxi.say(words));
+            };
+            var die = function () { 
+                return interpreter.createPrimitive(jaxi.die());
+            };
+            var follow = function (thing) { 
+                return interpreter.createPrimitive(jaxi.follow(thing));
+            };
+            var clearActions = function () { 
+                return interpreter.createPrimitive(jaxi.clearActions());
+            };
+            var doActions = function () { 
+                return interpreter.createPrimitive(jaxi.doActions());
+            };
+            
+            interpreter.setProperty(scope, 'jump', interpreter.createNativeFunction(jump));
+            interpreter.setProperty(scope, 'run', interpreter.createNativeFunction(run));
+            interpreter.setProperty(scope, 'pickUp', interpreter.createNativeFunction(pickUp));
+            interpreter.setProperty(scope, 'say', interpreter.createNativeFunction(say));
+            interpreter.setProperty(scope, 'die', interpreter.createNativeFunction(die));
+            interpreter.setProperty(scope, 'follow', interpreter.createNativeFunction(follow));
+            interpreter.setProperty(scope, 'clearActions', interpreter.createNativeFunction(clearActions));
+            interpreter.setProperty(scope, 'doActions', interpreter.createNativeFunction(doActions));
+        } 
+       
+        var myInterpreter = new Interpreter(commandString, initFunc);
+  
+        setInterval(function(){
+            myInterpreter.step(); 
+        }, 80);
+        
+        editor.focus(); 
+        hideSpeechBubble();
 
 	if(isChopperUp)
 	{
-		hideChopperBot();
-	}
-
+            hideChopperBot();
+	} 
 }
 
 function givePinkHandbook()

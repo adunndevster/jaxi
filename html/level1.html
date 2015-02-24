@@ -4,7 +4,7 @@
 <head>
 	<script src="http://code.createjs.com/createjs-2013.05.14.min.js"></script>
 	<script type="text/javascript" src="libs/Box2dWeb-2.1.a.3.min.js"></script>
-	<script type="text/javascript" src="libs/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="libs/jquery-1.7.1.min.js"></script> 
 	<script type="text/javascript" src="scripts/level1.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
 	<script type="text/javascript" src="scripts/jaxi.js"></script>
@@ -12,6 +12,8 @@
 	<script type="text/javascript" src="scripts/presentation.js"></script>
 	<script src="//connect.soundcloud.com/sdk.js"></script>
 	<script src="soundmanager2-nodebug-jsmin.js"></script>
+        <script type="text/javascript" src="scripts/acorn.js"></script>
+        <script type="text/javascript" src="scripts/acorn_interpreter.js"></script>
 	<link rel="stylesheet" href="styles/jaxi.css" />
 
 	<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
@@ -41,8 +43,8 @@
 		var editor = ace.edit("editor");
 		editor.setTheme("ace/theme/clouds");
 		editor.getSession().setMode("ace/mode/javascript");
-		editor.focus();
-	</script>
+		editor.focus();	
+</script>
 	<div id="codeControls">
 		<img src="assets/images/mcPinkIconWhite.png">
 		<button class="css3button" onclick="runCode()"><img src="assets/images/mcPlayIcon.png"> <span style="position: relative; top: -5px;">Run Code</span></button>
