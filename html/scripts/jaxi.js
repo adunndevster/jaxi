@@ -129,7 +129,7 @@ var jaxi = (function(){
 		addAction: addAction,
 		clearActions: clearActions,
 		doActions: doActions
-	}
+	};
 })();
 
 //now setup jaxis vars
@@ -187,7 +187,7 @@ function runCode()
   
         setInterval(function(){
             myInterpreter.step(); 
-        }, 80);
+        }, 300);
         
         editor.focus(); 
         hideSpeechBubble();
