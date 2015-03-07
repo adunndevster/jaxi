@@ -210,7 +210,7 @@ var box2d = (function() {
 		var contactListener = new b2ContactListener;
 
 		contactListener.BeginContact = function(contact)
-		{
+		{ 
 			var fixtureA = contact.GetFixtureA();
 			var fixtureB = contact.GetFixtureB();
 			if(fixtureB.GetBody().GetUserData().skin.isSign)
@@ -244,7 +244,7 @@ var box2d = (function() {
 		}
 
 		contactListener.EndContact = function(contact)
-		{
+		{ 
 			var fixtureA = contact.GetFixtureA();
 			var fixtureB = contact.GetFixtureB();
 
@@ -252,7 +252,7 @@ var box2d = (function() {
 			{
 				hideMessage();
 			}
-		}
+		}              
 		world.SetContactListener(contactListener);
 	}
 

@@ -13,123 +13,213 @@ var isActionRunning = false;
 var isFollowing = false;
 var thingToFollow;
 
-var jaxi = (function(){
+function SynchronousController(current) { //handler
+    this.current = current; //current and last current function
+    this.waitStack = new Array(); //functions to wait
+    this.time = 500; //milliseconds to step
+}
 
-	function jump(power)
-	{
-		power = typeof power !== 'undefined' ? power : 400;
-		var degrees = (power < 0) ? 80 : -80;
-		b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * power,
-			Math.sin(degrees * (Math.PI / 180)) * power),
-			b2jaxi.GetWorldCenter());
-		gjaxi.gotoAndPlay("jump");
-		hideCodePanel();
-	};
+var _synch = new SynchronousController(undefined);
 
-	function run(distance)
-	{
-		distance = typeof distance !== 'undefined' ? distance : 200;
-		var degrees = 0;
-		b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * distance,
-			0),
-			b2jaxi.GetWorldCenter());
-		gjaxi.gotoAndPlay("run");
-		//bounceSound = createjs.Sound.createInstance("bounce");  // create it by id
-		//s.bounceSound.setVolume(Math.random()*0.01 + 0.01);  // because there will be a lot
-		var runSound = createjs.Sound.createInstance("sndRun");  // create it by id
-		runSound.setVolume(.1);
-		runSound.play();
-		hideCodePanel();
-	};
+var jaxi = (function () {
 
-	function pickUp()
-	{
-		gjaxi.gotoAndPlay("pickup");
-		hideCodePanel();
-	};
+    function jump(power)
+    { 
+        if (_synch.current !== undefined) {
 
-	function say(words)
-	{
-		speak(gjaxi, words);
-		//alert(words);
-		hideCodePanel();
-	};
+            if (_synch.waitStack.indexOf('jump') == -1 || _synch.waitStack.length > 0) {
+                _synch.waitStack.push('jump');
+                wait();
+            } 
+            else
+            {
+                internal();
+            }
 
-	function die()
-	{
-		gjaxi.gotoAndPlay("die");
-		gjaxi.addEventListener("animationend", function()
-		{
-			reloadPage();
-		});
-		hideCodePanel();
-	};
+            function wait() {
 
-	//this function makes jaxi follow something.
-	function follow(thing)
-	{
-		//1. determine jaxi's distance (x, y) to the thing
-		var dx = thing.x - gjaxi.x;
-		var dy = thing.y - gjaxi.y;
+                if (gjaxi.currentFrame == 0) {
+                    _synch.current = undefined;
+                }
+                if (_synch.current !== undefined) {
+                    setTimeout(function () { wait(); }, _synch.time);
+                }
+                else
+                {
+                    if (_synch.waitStack[0] == 'jump') {
+                        _synch.waitStack.splice(0, 1);
+                        internal();
+                    } 
+                    else
+                    {
+                        setTimeout(function () { wait(); }, _synch.time);
+                    }
+                }
+            }
+        }
+        else
+        {
+            internal();
+        }
 
-		//now get the angle of the thing from jaxi... if it is > 20 then she needs to jump, otherwise, run
-		var angle = Math.ceil(Math.tan(dy/dx) * (180/Math.PI));
-		//alert(angle);
+        function internal() {
+            _synch.current = 'jump';
+            power = typeof power !== 'undefined' ? power : 400;
+            var degrees = (power < 0) ? 80 : -80;
+            b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * power,
+                    Math.sin(degrees * (Math.PI / 180)) * power),
+                    b2jaxi.GetWorldCenter());
+            gjaxi.gotoAndPlay("jump");        
+            hideCodePanel();
+        } 
+    };
+
+    function run(distance)
+    {
+        if (_synch.current !== undefined) {
+
+            if (_synch.waitStack.indexOf('run') == -1 || _synch.waitStack.length > 0) {
+                _synch.waitStack.push('run');
+                wait();
+            } 
+            else
+            {
+                internal();
+            }
+
+            function wait() {
+
+                if (gjaxi.currentFrame == 0) {
+                    _synch.current = undefined;
+                }
+
+                if (_synch.current !== undefined) {
+                    setTimeout(function () {  wait();  }, _synch.time);
+                }
+                else
+                {
+                    if (_synch.waitStack[0] == 'run') {
+                        _synch.waitStack.splice(0, 1);
+                        internal();
+                    } 
+                    else
+                    {
+                        setTimeout(function () {   wait();  }, _synch.time);
+                    }
+                }
+            }
+        }
+        else
+        {
+            internal();
+        }
+
+        function internal() {
+            _synch.current = 'run';
+            distance = typeof distance !== 'undefined' ? distance : 200;
+            var degrees = 0; 
+            b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * distance, 0), b2jaxi.GetWorldCenter());
+            gjaxi.gotoAndPlay("run");
+            //bounceSound = createjs.Sound.createInstance("bounce");  // create it by id
+            //s.bounceSound.setVolume(Math.random()*0.01 + 0.01);  // because there will be a lot
+            var runSound = createjs.Sound.createInstance("sndRun");  // create it by id
+            runSound.setVolume(.1);
+            runSound.play();
+            hideCodePanel();
+        }
+    };
+
+    function pickUp()
+    {
+        gjaxi.gotoAndPlay("pickup");
+        hideCodePanel();
+    };
+
+    function say(words)
+    {
+        speak(gjaxi, words);
+        //alert(words);
+        hideCodePanel();
+    };
+
+    function die()
+    {
+        gjaxi.gotoAndPlay("die");
+        gjaxi.addEventListener("animationend", function ()
+        {
+            reloadPage();
+        });
+        hideCodePanel();
+    };
+
+    //this function makes jaxi follow something.
+    function follow(thing)
+    {
+        //1. determine jaxi's distance (x, y) to the thing
+        var dx = thing.x - gjaxi.x;
+        var dy = thing.y - gjaxi.y;
+
+        //now get the angle of the thing from jaxi... if it is > 20 then she needs to jump, otherwise, run
+        var angle = Math.ceil(Math.tan(dy / dx) * (180 / Math.PI));
+        //alert(angle);
 
 
-		//2. determine if she needs to run or jump to get there
-		//3. Do the determined action, and then run jaxi.follow(thing) again...
-		if(angle <= 0)
-		{
-			jaxi.jump((dx/10) * (Math.abs(angle/10) +.9));
-		} else {
-			jaxi.run(dx/10);
-		}
+        //2. determine if she needs to run or jump to get there
+        //3. Do the determined action, and then run jaxi.follow(thing) again...
+        if (angle <= 0)
+        {
+            jaxi.jump((dx / 10) * (Math.abs(angle / 10) + .9));
+        } else {
+            jaxi.run(dx / 10);
+        }
 
-		isFollowing = true;
-		thingToFollow = thing;
+        isFollowing = true;
+        thingToFollow = thing;
 
-		//TODO: I may need to do cliff and edge detection
-	}
+        //TODO: I may need to do cliff and edge detection
+    }
+    ;
 
-	function addAction(action, param)
-	{
-		actions.push({action: action, param: param});
-	}
+    function addAction(action, param)
+    {
+        actions.push({action: action, param: param});
+    }
+    ;
 
-	function clearActions()
-	{
-		actions = [];
-		currentActionIndex = 0;
-		isActionRunning = false;
-	}
+    function clearActions()
+    {
+        actions = [];
+        currentActionIndex = 0;
+        isActionRunning = false;
+    }
+    ;
 
-	function doActions() //also works to call the next action
-	{
-		var action =  "jaxi." + actions[currentActionIndex].action;
-		var param = actions[currentActionIndex].param;
-		eval(action)(param);
-		currentAction = gjaxi.currentAnimation;
-		isActionRunning = true;
-		currentActionIndex++;
+    function doActions() //also works to call the next action
+    {
+        var action = "jaxi." + actions[currentActionIndex].action;
+        var param = actions[currentActionIndex].param;
+        eval(action)(param);
+        currentAction = gjaxi.currentAnimation;
+        isActionRunning = true;
+        currentActionIndex++;
 
-		if(currentActionIndex >= actions.length)
-		{
-			clearActions();
-		}
-	}
+        if (currentActionIndex >= actions.length)
+        {
+            clearActions();
+        }
+    };
 
-	return {
-		jump: jump,
-		run: run,
-		pickUp: pickUp,
-		say: say,
-		die: die,
-		follow: follow, 
-		addAction: addAction,
-		clearActions: clearActions,
-		doActions: doActions
-	};
+    return {
+        jump: jump,
+        run: run,
+        pickUp: pickUp,
+        say: say,
+        die: die,
+        follow: follow,
+        addAction: addAction,
+        clearActions: clearActions,
+        doActions: doActions
+    };
 })();
 
 //now setup jaxis vars
@@ -138,73 +228,39 @@ jaxi.isAlive = true;
 
 
 //non jaxi functions...
- 
+
 function runCode()
 {
-	//var commandString = document.getElementById('txtCommand').innerHTML;
-        var commandString = editor.getValue();
-        //commandString = commandString.replace(/<br>/g, "");
+    //var commandString = document.getElementById('txtCommand').innerHTML;
+    var commandString = editor.getValue();
+    //commandString = commandString.replace(/<br>/g, "");
 
-        commandString = commandString.replace(/jaxi./g,"");
-        
-        function initFunc(interpreter, scope) {
-            var jump = function (power) { 
-                return interpreter.createPrimitive(jaxi.jump(power));
-            };
-            var run = function (distance) { 
-                return interpreter.createPrimitive(jaxi.run(distance));
-            };
-            var pickUp = function () { 
-                return interpreter.createPrimitive(jaxi.pickUp());
-            };
-            var say = function (words) { 
-                return interpreter.createPrimitive(jaxi.say(words));
-            };
-            var die = function () { 
-                return interpreter.createPrimitive(jaxi.die());
-            };
-            var follow = function (thing) { 
-                return interpreter.createPrimitive(jaxi.follow(thing));
-            };
-            var clearActions = function () { 
-                return interpreter.createPrimitive(jaxi.clearActions());
-            };
-            var doActions = function () { 
-                return interpreter.createPrimitive(jaxi.doActions());
-            };
-            
-            interpreter.setProperty(scope, 'jump', interpreter.createNativeFunction(jump));
-            interpreter.setProperty(scope, 'run', interpreter.createNativeFunction(run));
-            interpreter.setProperty(scope, 'pickUp', interpreter.createNativeFunction(pickUp));
-            interpreter.setProperty(scope, 'say', interpreter.createNativeFunction(say));
-            interpreter.setProperty(scope, 'die', interpreter.createNativeFunction(die));
-            interpreter.setProperty(scope, 'follow', interpreter.createNativeFunction(follow));
-            interpreter.setProperty(scope, 'clearActions', interpreter.createNativeFunction(clearActions));
-            interpreter.setProperty(scope, 'doActions', interpreter.createNativeFunction(doActions));
-        } 
-       
-        var myInterpreter = new Interpreter(commandString, initFunc);
-  
-        setInterval(function(){
-            myInterpreter.step(); 
-        }, 300);
-        
-        editor.focus(); 
-        hideSpeechBubble();
+    try
+    {
+        eval(commandString);
+    } catch (err)
+    {
+        alert(err.message);
+    }
 
-	if(isChopperUp)
-	{
-            hideChopperBot();
-	} 
+    editor.focus();
+
+    hideSpeechBubble();
+
+    if (isChopperUp)
+    {
+        hideChopperBot();
+    }
+
 }
 
 function givePinkHandbook()
 {
-	$('#btnHandbook').animate({opacity: '1'});
+    $('#btnHandbook').animate({opacity: '1'});
 }
 
 function givePinkChopper()
 {
-	//show chopper
-	//$('#btnHandbook').animate({opacity: '1'});
+    //show chopper
+    //$('#btnHandbook').animate({opacity: '1'});
 }
