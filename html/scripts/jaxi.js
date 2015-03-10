@@ -131,25 +131,149 @@ var jaxi = (function () {
 
     function pickUp()
     {
-        gjaxi.gotoAndPlay("pickup");
-        hideCodePanel();
+        
+       if (_synch.current !== undefined) {
+
+            if (_synch.waitStack.indexOf('pickUp') == -1 || _synch.waitStack.length > 0) {
+                _synch.waitStack.push('pickUp');
+                wait();
+            } 
+            else
+            {
+                internal();
+            }
+
+            function wait() {
+
+                if (gjaxi.currentFrame == 0) {
+                    _synch.current = undefined;
+                }
+
+                if (_synch.current !== undefined) {
+                    setTimeout(function () {  wait();  }, _synch.time);
+                }
+                else
+                {
+                    if (_synch.waitStack[0] == 'pickUp') {
+                        _synch.waitStack.splice(0, 1);
+                        internal();
+                    } 
+                    else
+                    {
+                        setTimeout(function () {   wait();  }, _synch.time);
+                    }
+                }
+            }
+        }
+        else
+        {
+            internal();
+        }
+        
+        function internal() {
+            _synch.current = 'pickUp';
+            gjaxi.gotoAndPlay("pickup");
+            hideCodePanel();
+        }
     };
 
     function say(words)
-    {
-        speak(gjaxi, words);
-        //alert(words);
-        hideCodePanel();
+    { 
+         if (_synch.current !== undefined) {
+
+            if (_synch.waitStack.indexOf('say') == -1 || _synch.waitStack.length > 0) {
+                _synch.waitStack.push('say');
+                wait();
+            } 
+            else
+            {
+                internal();
+            }
+
+            function wait() {
+
+                if (gjaxi.currentFrame == 0) {
+                    _synch.current = undefined;
+                }
+
+                if (_synch.current !== undefined) {
+                    setTimeout(function () {  wait();  }, _synch.time);
+                }
+                else
+                {
+                    if (_synch.waitStack[0] == 'say') {
+                        _synch.waitStack.splice(0, 1);
+                        internal();
+                    } 
+                    else
+                    {
+                        setTimeout(function () {   wait();  }, _synch.time);
+                    }
+                }
+            }
+        }
+        else
+        {
+            internal();
+        }
+        
+        function internal() {
+            _synch.current = 'say';
+            speak(gjaxi, words);
+            //alert(words);
+            hideCodePanel();
+        } 
     };
 
     function die()
-    {
-        gjaxi.gotoAndPlay("die");
-        gjaxi.addEventListener("animationend", function ()
+    { 
+         if (_synch.current !== undefined) {
+
+            if (_synch.waitStack.indexOf('die') == -1 || _synch.waitStack.length > 0) {
+                _synch.waitStack.push('die');
+                wait();
+            } 
+            else
+            {
+                internal();
+            }
+
+            function wait() {
+
+                if (gjaxi.currentFrame == 0) {
+                    _synch.current = undefined;
+                }
+
+                if (_synch.current !== undefined) {
+                    setTimeout(function () {  wait();  }, _synch.time);
+                }
+                else
+                {
+                    if (_synch.waitStack[0] == 'die') {
+                        _synch.waitStack.splice(0, 1);
+                        internal();
+                    } 
+                    else
+                    {
+                        setTimeout(function () {   wait();  }, _synch.time);
+                    }
+                }
+            }
+        }
+        else
         {
-            reloadPage();
-        });
-        hideCodePanel();
+            internal();
+        }
+        
+        function internal() {
+            _synch.current = 'die';
+            gjaxi.gotoAndPlay("die");
+            gjaxi.addEventListener("animationend", function ()
+            {
+                reloadPage();
+            });
+            hideCodePanel();
+        }  
     };
 
     //this function makes jaxi follow something.
