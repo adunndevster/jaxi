@@ -12,6 +12,7 @@ var currentAction;
 var isActionRunning = false;
 var isFollowing = false;
 var thingToFollow;
+var CURRENT_LANGUAGE = "JAVASCRIPT";
 
 function SynchronousController(current) { //handler
     this.current = current; //current and last current function
@@ -128,7 +129,7 @@ var jaxi = (function () {
             hideCodePanel();
         }
     };
-
+    
     function pickUp()
     {
         
@@ -349,8 +350,8 @@ var jaxi = (function () {
 //now setup jaxis vars
 jaxi.isAlive = true;
 
-
-
+ 
+ 
 //non jaxi functions...
 
 function runCode()
@@ -359,12 +360,32 @@ function runCode()
     var commandString = editor.getValue();
     //commandString = commandString.replace(/<br>/g, "");
 
-    try
-    {
-        eval(commandString);
-    } catch (err)
-    {
-        alert(err.message);
+    if(CURRENT_LANGUAGE === "JAVASCRIPT"){         
+        try
+        {
+            eval(commandString);
+        } catch (err)
+        {
+            alert(err.message);
+        }    
+    } else if (CURRENT_LANGUAGE === "C#"){
+        //connect to own sever that we'll implement
+        $.ajax({
+            url: "/post/sharpkit.php",
+            data: {
+                code: "using SharpKit.JavaScript; using SharpKit.Html; [JsType(JsMode.Global)]    public class MyPageClient  {        public static void MyMethod()        {        "+commandString +"       }    }  public class Jaxi{         public void run(){}          public void run(int distance){}         public void jump(int power){}         public void jump(){}         public void clearActions(){}         public void doActions(){}         public void addAction(string action,string param){}         public void follow(string thing){}        public void pickUp(){}         public void say(string words){}         public void die(){}    }"
+            },
+            success: function (data) {
+                var data = JSON.parse(data);
+                
+                if(data.Success){
+                    cSharpProcess(data);
+                }else{
+                    window.alert("Error");
+                }
+            },
+            type: "POST"
+        });
     }
 
     editor.focus();
@@ -376,6 +397,14 @@ function runCode()
         hideChopperBot();
     }
 
+}
+
+function cSharpProcess(data){
+    
+   var code = data.JsCode;
+   code = code.replace("var jaxi = new Jaxi.ctor();","");
+   code += "(function(){    MyMethod(); })();";
+   eval(code);
 }
 
 function givePinkHandbook()
