@@ -26,108 +26,44 @@ var jaxi = (function () {
 
     function jump(power)
     { 
-        if (_synch.current !== undefined) {
-
+		var properties = {power:power};
+        if (_synch.current !== undefined) {		
             if (_synch.waitStack.indexOf('jump') == -1 || _synch.waitStack.length > 0) {
                 _synch.waitStack.push('jump');
-                wait();
+                wait('jump', properties);
             } 
             else
             {
-                internal();
-            }
-
-            function wait() {
-
-                if (gjaxi.currentFrame == 0) {
-                    _synch.current = undefined;
-                }
-                if (_synch.current !== undefined) {
-                    setTimeout(function () { wait(); }, _synch.time);
-                }
-                else
-                {
-                    if (_synch.waitStack[0] == 'jump') {
-                        _synch.waitStack.splice(0, 1);
-                        internal();
-                    } 
-                    else
-                    {
-                        setTimeout(function () { wait(); }, _synch.time);
-                    }
-                }
+                internal('jump', properties);
             }
         }
         else
         {
-            internal();
+            internal('jump', properties);
         }
-
-        function internal() {
-            _synch.current = 'jump';
-            power = typeof power !== 'undefined' ? power : 400;
-            var degrees = (power < 0) ? 80 : -80;
-            b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * power,
-                    Math.sin(degrees * (Math.PI / 180)) * power),
-                    b2jaxi.GetWorldCenter());
-            gjaxi.gotoAndPlay("jump");        
-            hideCodePanel();
-        } 
     };
 
     function run(distance)
     {
+		
+		var properties = {distance:distance};
+		
         if (_synch.current !== undefined) {
 
             if (_synch.waitStack.indexOf('run') == -1 || _synch.waitStack.length > 0) {
                 _synch.waitStack.push('run');
-                wait();
+                wait('run', properties);
             } 
             else
             {
-                internal();
-            }
-
-            function wait() {
-
-                if (gjaxi.currentFrame == 0) {
-                    _synch.current = undefined;
-                }
-
-                if (_synch.current !== undefined) {
-                    setTimeout(function () {  wait();  }, _synch.time);
-                }
-                else
-                {
-                    if (_synch.waitStack[0] == 'run') {
-                        _synch.waitStack.splice(0, 1);
-                        internal();
-                    } 
-                    else
-                    {
-                        setTimeout(function () {   wait();  }, _synch.time);
-                    }
-                }
+                internal('run', properties);
             }
         }
         else
         {
-            internal();
+            internal('run', properties);
         }
-
-        function internal() {
-            _synch.current = 'run';
-            distance = typeof distance !== 'undefined' ? distance : 200;
-            var degrees = 0; 
-            b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * distance, 0), b2jaxi.GetWorldCenter());
-            gjaxi.gotoAndPlay("run");
-            //bounceSound = createjs.Sound.createInstance("bounce");  // create it by id
-            //s.bounceSound.setVolume(Math.random()*0.01 + 0.01);  // because there will be a lot
-            var runSound = createjs.Sound.createInstance("sndRun");  // create it by id
-            runSound.setVolume(.1);
-            runSound.play();
-            hideCodePanel();
-        }
+		  
     };
     
     function pickUp()
@@ -137,93 +73,41 @@ var jaxi = (function () {
 
             if (_synch.waitStack.indexOf('pickUp') == -1 || _synch.waitStack.length > 0) {
                 _synch.waitStack.push('pickUp');
-                wait();
+                wait('pickUp', properties);
             } 
             else
             {
-                internal();
-            }
-
-            function wait() {
-
-                if (gjaxi.currentFrame == 0) {
-                    _synch.current = undefined;
-                }
-
-                if (_synch.current !== undefined) {
-                    setTimeout(function () {  wait();  }, _synch.time);
-                }
-                else
-                {
-                    if (_synch.waitStack[0] == 'pickUp') {
-                        _synch.waitStack.splice(0, 1);
-                        internal();
-                    } 
-                    else
-                    {
-                        setTimeout(function () {   wait();  }, _synch.time);
-                    }
-                }
+                internal('pickUp');
             }
         }
         else
         {
-            internal();
+            internal('pickUp');
         }
-        
-        function internal() {
-            _synch.current = 'pickUp';
-            gjaxi.gotoAndPlay("pickup");
-            hideCodePanel();
-        }
+  
     };
 
     function say(words)
     { 
+		
+		var properties = {words:words};
+		
          if (_synch.current !== undefined) {
 
             if (_synch.waitStack.indexOf('say') == -1 || _synch.waitStack.length > 0) {
                 _synch.waitStack.push('say');
-                wait();
+                wait('say', properties);
             } 
             else
             {
-                internal();
-            }
-
-            function wait() {
-
-                if (gjaxi.currentFrame == 0) {
-                    _synch.current = undefined;
-                }
-
-                if (_synch.current !== undefined) {
-                    setTimeout(function () {  wait();  }, _synch.time);
-                }
-                else
-                {
-                    if (_synch.waitStack[0] == 'say') {
-                        _synch.waitStack.splice(0, 1);
-                        internal();
-                    } 
-                    else
-                    {
-                        setTimeout(function () {   wait();  }, _synch.time);
-                    }
-                }
+                internal('say', properties);
             }
         }
         else
         {
-            internal();
+            internal('say', properties);
         }
-        
-        function internal() {
-            _synch.current = 'say';
-            speak(gjaxi, words);
-            //alert(words);
-            hideCodePanel();
-        } 
+
     };
 
     function die()
@@ -232,50 +116,189 @@ var jaxi = (function () {
 
             if (_synch.waitStack.indexOf('die') == -1 || _synch.waitStack.length > 0) {
                 _synch.waitStack.push('die');
-                wait();
+                wait('die');
             } 
             else
             {
-                internal();
-            }
-
-            function wait() {
-
-                if (gjaxi.currentFrame == 0) {
-                    _synch.current = undefined;
-                }
-
-                if (_synch.current !== undefined) {
-                    setTimeout(function () {  wait();  }, _synch.time);
-                }
-                else
-                {
-                    if (_synch.waitStack[0] == 'die') {
-                        _synch.waitStack.splice(0, 1);
-                        internal();
-                    } 
-                    else
-                    {
-                        setTimeout(function () {   wait();  }, _synch.time);
-                    }
-                }
+                internal('die');
             }
         }
         else
         {
-            internal();
+            internal('die');
         }
-        
-        function internal() {
-            _synch.current = 'die';
-            gjaxi.gotoAndPlay("die");
-            gjaxi.addEventListener("animationend", function ()
-            {
-                reloadPage();
-            });
-            hideCodePanel();
-        }  
+
     };
+    
+    function encounters(id){
+		
+		var properties = {id:id};
+		
+		console.log("-------------------");
+		console.log("encounters #1");
+		
+        if (_synch.current !== undefined) {
+
+			console.log("encounters #2");
+
+            if (_synch.waitStack.indexOf('encounters') == -1 || _synch.waitStack.length > 0) {
+				
+				console.log("encounters #2.1");
+				
+                _synch.waitStack.push('encounters');
+                wait('encounters', properties);
+                
+                console.log("encounters #2.1.1");
+            } 
+            else
+            {
+				console.log("encounters #2.2");
+				
+				internal('encounters', properties);
+                return "11111";
+            }
+        }
+        else
+        {
+			
+			console.log("encounters #3");
+			
+			internal('encounters', properties);
+            return "22222";
+        }		
+	}
+    
+    
+    function wait(action, properties){
+		
+		
+		console.log("wait #1");
+		console.log("wait #1 --> action: " + action);
+		console.log("wait #1 --> properties: " + properties);
+		
+		if (gjaxi.currentFrame == 0){
+			console.log("wait #2");
+			_synch.current = undefined;
+		}
+		
+		if (_synch.current !== undefined) {
+			console.log("wait #3");
+			setTimeout(function () { wait(action, properties); }, _synch.time);
+		}else{
+			console.log("wait #4");
+			if (_synch.waitStack[0] == action) {
+				console.log("wait #4.1");
+				_synch.waitStack.splice(0, 1);
+				return internal(action, properties);
+			} 
+			else
+			{
+				console.log("wait #4.2");
+				setTimeout(function () { wait(action, properties); }, _synch.time);
+			}
+		}
+	}
+	
+	function internal(action, properties){
+		
+		/*
+		console.log("--start internal--");
+		console.log(action);
+		console.log(properties);
+		console.log("--end internal--");
+		* */
+					
+		switch(action){
+			case 'jump':
+			
+				//console.log("----jump--");
+
+				_synch.current = 'jump';
+				power = properties.power;
+				power = typeof power !== 'undefined' ? power : 400;
+				var degrees = (power < 0) ? 80 : -80;
+				b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * power,
+						Math.sin(degrees * (Math.PI / 180)) * power),
+						b2jaxi.GetWorldCenter());
+				gjaxi.gotoAndPlay("jump");        
+				hideCodePanel();
+			break;
+			case 'run':
+			
+				//console.log("----run--");
+			
+				_synch.current = 'run';
+				distance = properties.distance;
+				distance = typeof distance !== 'undefined' ? distance : 200;
+				var degrees = 0; 
+				b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * distance, 0), b2jaxi.GetWorldCenter());
+				gjaxi.gotoAndPlay("run");
+				//bounceSound = createjs.Sound.createInstance("bounce");  // create it by id
+				//s.bounceSound.setVolume(Math.random()*0.01 + 0.01);  // because there will be a lot
+				var runSound = createjs.Sound.createInstance("sndRun");  // create it by id
+				runSound.setVolume(.1);
+				runSound.play();
+				hideCodePanel();
+			break;		
+			case 'pickUp':
+				_synch.current = 'pickUp';
+				gjaxi.gotoAndPlay("pickup");
+				hideCodePanel();
+			break;
+			case 'say':
+				_synch.current = 'say';
+				words = properties.words;
+				speak(gjaxi, words);
+				//alert(words);
+				hideCodePanel();
+			break;
+			case 'die':
+				_synch.current = 'die';
+				gjaxi.gotoAndPlay("die");
+				gjaxi.addEventListener("animationend", function ()
+				{
+					reloadPage();
+				});
+				hideCodePanel();
+			break;		
+			case 'encounters':
+			
+			
+				//console.log("----encounters--");
+			
+				_synch.current = 'encounters';
+						
+				/*
+				id = properties.id;
+			
+				var asset = getAssetById(id);
+				
+				if(asset != null){
+
+					var distance = asset.x - gjaxi.x;
+					
+					//console.log(gjaxi.x);
+					//console.log(asset.x);
+					console.log(distance);
+					console.log("---------");			
+					
+					return (distance >= 0 && distance < 100 );
+					
+				}else{
+
+					console.log("Asset " + id + " not found");
+					return false;
+				}
+				
+				return false;	
+				* */
+				
+				return "testing...";
+					
+			break;		
+		}
+		
+	}
 
     //this function makes jaxi follow something.
     function follow(thing)
@@ -340,6 +363,7 @@ var jaxi = (function () {
         pickUp: pickUp,
         say: say,
         die: die,
+        encounters: encounters,
         follow: follow,
         addAction: addAction,
         clearActions: clearActions,
@@ -366,7 +390,7 @@ function runCode()
             eval(commandString);
         } catch (err)
         {
-            alert(err.message);
+            console.log(err.message);
         }    
     } else if (CURRENT_LANGUAGE === "C#"){
         //connect to own sever that we'll implement

@@ -52,6 +52,10 @@ function Main()
 	parallaxFGSprite = new  createjs.Container();
 	stage.addChild(parallaxFGSprite);
 	stage.snapPixelsEnabled = true;
+	
+	//Enables mouse over (mouseover and mouseout) and roll over events 
+	//(rollover and rollout) for this stage's display list. http://www.createjs.com/Docs/EaselJS/classes/Stage.html#method_enableMouseOver
+	stage.enableMouseOver(10);
 
 	//box2d setup
 	box2d.setup();
@@ -101,7 +105,7 @@ function Main()
 	var url = 'http://api.soundcloud.com/resolve.json?url=http://soundcloud.com/adam-dunn-11/sets/' + songSet + '&client_id=0cc96d96abb7a30d3850ba910d8efae4';
 	$.getJSON(url, function(playlists) {
 		tracks = playlists.tracks;
-		playSong()
+		//playSong()
 	});
 
 	$('#soundCloudTab').mouseenter(function() {
@@ -709,6 +713,102 @@ function getAssetByType(type)
 	}
 }
 
+function getAssetById(id)
+{
+	
+	for (var i = 0; i < gameSprite.children.length; i++)//or for(var i in c.children)
+	{
+		var child = gameSprite.children[i];
+		if(child.id == id){
+			return child;
+		}
+	}	
+	
+	return null;
+	
+	
+}
+
+var tooltipContainer;
+var tooltip;
+
+
+function createTooltip(x, y, text){
+	
+	var width = 200, height = 50;
+	
+	tooltipContainer = new createjs.Container();
+	tooltipContainer.x = x;
+	tooltipContainer.y = y;
+	//tooltipContainer.setBounds(0, 0, width, height);	
+	
+	var rect = new createjs.Shape();
+	rect.graphics.setStrokeStyle(1,"square").beginStroke("#000000");
+	rect.graphics.beginFill('#FFFFFF').drawRect(0, 0, width, height);
+	
+	tooltipContainer.addChild(rect);
+	
+	var tooltipText = new createjs.Text();
+	tooltipText.set({
+		text: 'hello: ' + text,
+		font: "26px Arial",
+		color: "#000000",
+		textAlign: "center"
+	});	
+	
+	tooltipText.name = "tooltipText";
+	
+	tooltipText.x = rect.x + (width / 2);
+	tooltipText.y = rect.y + (height / 2) - 10;
+		
+	/*
+	var b = tooltipText.getBounds();
+	tooltipText.x = width - b.width/2; 
+	tooltipText.y = height - b.height/2;	
+	* */
+	
+	tooltipContainer.alpha = 0;
+	tooltipContainer.addChild(tooltipText);
+	gameSprite.addChild(tooltipContainer);	
+	
+}
+
+function showTooltip(x, y, text){
+	
+	tooltipContainer.x = x;
+	tooltipContainer.y = y;
+
+	var tooltipText = tooltipContainer.getChildByName("tooltipText");
+	tooltipText.text = text;
+	
+	tooltipContainer.alpha = 0;
+	createjs.Tween.get(tooltipContainer, {override:true})
+         .wait(0)
+         .to({alpha:1, visible:true}, 700);	
+	
+}
+
+function hideTooltip(){
+	
+	createjs.Tween.removeTweens(tooltipContainer);
+	
+	//tooltipContainer.visible = false;
+	tooltipContainer.alpha = 0;
+}
+
+function handleMouseOver(event) {
+	var target = event.target;
+	//console.log(target.type);
+	
+	var type = target.type !== undefined ? target.type : "Object";
+		
+	showTooltip((target.x - target.regX), (target.y - target.regY - 10), type + ": " + target.id)
+}
+
+function handleMouseOut(event) {
+    hideTooltip();
+}
+
 function handleComplete(event) {
 	//triggered when all loading is complete
 	//setup the level
@@ -724,7 +824,6 @@ function handleComplete(event) {
 		if (item.type == createjs.LoadQueue.IMAGE) {
 			var bmp = new createjs.Bitmap(result);
 		}
-
 
 		var platformOffsetY = -80;
 
@@ -744,6 +843,10 @@ function handleComplete(event) {
 
 				gjaxi.regX = (gjaxi.getBounds().width/2) - 80;
 				gjaxi.regY = (gjaxi.getBounds().height/2) + 50;
+				
+				gjaxi.onMouseOver = handleMouseOver;
+				gjaxi.onMouseOut = handleMouseOut;
+				
 				gameSprite.addChild(gjaxi);  //you can add multiple children here...
 				box2d.createPink(gjaxi);
 				break;
@@ -1051,7 +1154,16 @@ function handleComplete(event) {
 				g.drawRect(0, 0, piece.width, piece.height);
 				piece.x = level.elements[i].x - (piece.width/2);
 				piece.y = level.elements[i].y - (piece.height/2);
+				
+				if(level.elements[i].type == 'RobotJunk1'){
+					piece.type = level.elements[i].type;
+					piece.onMouseOver = handleMouseOver;
+					piece.onMouseOut = handleMouseOut;		
+				}
+
 				gameSprite.addChild(piece);
+				
+				//console.log(level.elements[i]);
 
 		}
 
@@ -1078,6 +1190,9 @@ function handleComplete(event) {
 
 	//Now show the page...
 	$('#loadScreen').css("display", "none");
+	
+	
+	createTooltip(0, 0, "test");
 }
 
 function getCharacterPosition(skin)
