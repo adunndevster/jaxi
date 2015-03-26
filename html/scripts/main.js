@@ -23,7 +23,7 @@ var b2ContactListener = Box2D.Dynamics.b2ContactListener;
 var bodiesToRemove = [];
 
 var isChopperUp = false;
-
+var isCameraOn = true;
 
 function Main()
 {
@@ -119,6 +119,13 @@ function Main()
 		//document.getElementById("content").style.display = "none";
 		return;
 	}
+	
+	//levelZoom and levelCamera is set in the levelX.js file.
+	levelZoom = typeof levelZoom !== 'undefined' ? levelZoom : .5;
+	zoom = levelZoom;
+	
+	levelCamera = typeof levelCamera !== 'undefined' ? levelCamera : true;
+	isCameraOn = levelCamera;
 
 }
 
@@ -262,7 +269,7 @@ var box2d = (function() {
 	var addDebug = function() {
 		var debugDraw = new b2DebugDraw();
 		debugDraw.SetSprite(debugContext);
-		debugDraw.SetDrawScale(SCALE);
+		debugDraw.SetDrawScale(SCALE/10);
 		debugDraw.SetFillAlpha(0.7);
 		debugDraw.SetLineThickness(1.0);
 		debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
@@ -361,8 +368,8 @@ var box2d = (function() {
 		b2choco.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
 		bodies.push(b2choco);
 	}
-
-	var createSolidPiece = function(skin) {
+	
+	var createPhysicsBorder = function(skin) {
 		var pieceFixture = new b2FixtureDef;
 		pieceFixture.density = 1;
 		pieceFixture.restitution = .1;
@@ -370,7 +377,7 @@ var box2d = (function() {
 
 		switch(skin.id)
 		{
-			case "TileEndLeft":
+			case "different shape": //This is a place holder for different shapes
 				var tileWidth = (skin.width/2)/SCALE;
 				var tileHeight =  (skin.height/2)/SCALE;
 				var dipPos = 20/SCALE;
@@ -383,19 +390,6 @@ var box2d = (function() {
 				pieceFixture.shape.SetAsArray([p1,p2,p3, p4, p5]);
 
 				break;
-			case "TileEndRight":
-				var tileWidth = (skin.width/2)/SCALE;
-				var tileHeight =  (skin.height/2)/SCALE;
-				var dipPos = 20/SCALE;
-				var p1 = new b2Vec2(-tileWidth, tileWidth);
-				var p2 = new b2Vec2(-tileWidth, -tileWidth);
-				var p3 = new b2Vec2(0, -tileWidth);
-				var p4 = new b2Vec2(tileWidth, dipPos);
-				var p5 = new b2Vec2(tileWidth, tileWidth);
-
-				pieceFixture.shape.SetAsArray([p1,p2,p3, p4, p5]);
-
-				break;
 			default:
 				pieceFixture.shape.SetAsBox((skin.width/2) / SCALE, (skin.height/2) / SCALE);
 				break;
@@ -403,12 +397,15 @@ var box2d = (function() {
 
 		var pieceBodyDef = new b2BodyDef;
 		pieceBodyDef.type = b2Body.b2_staticBody;
-		pieceBodyDef.position.x = (skin.x)  / SCALE;
-		pieceBodyDef.position.y = (skin.y) / SCALE;
+		
 		if(skin.angle != undefined)
 		{
 			pieceBodyDef.angle = skin.angle * (Math.PI / 180);
 		}
+		
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		
 		var piece = world.CreateBody(pieceBodyDef);
 		piece.CreateFixture(pieceFixture);
 
@@ -600,15 +597,18 @@ var box2d = (function() {
 
 					if(!createjs.Tween.hasActiveTweens(gameSprite))
 					{
-						gameSprite.x = -(gjaxi.x * zoom) + 300;
-						gameSprite.y = -(gjaxi.y * zoom) + 480;
+						if(isCameraOn)
+						{
+							gameSprite.x = -(gjaxi.x * zoom) + 300;
+							gameSprite.y = -(gjaxi.y * zoom) + 480;
 
-						parallaxBGSprite.x = -(b2jaxi.GetWorldCenter().x * (SCALE *.25));
-						//parallaxBGSprite.y = -(b2jaxi.GetWorldCenter().y * (SCALE * zoom)) + 480;
+							parallaxBGSprite.x = -(b2jaxi.GetWorldCenter().x * (SCALE *.25));
+							//parallaxBGSprite.y = -(b2jaxi.GetWorldCenter().y * (SCALE * zoom)) + 480;
 
-						parallaxFGSprite.x = -(b2jaxi.GetWorldCenter().x * (SCALE *.9)) + 1024;
+							parallaxFGSprite.x = -(b2jaxi.GetWorldCenter().x * (SCALE *.9)) + 1024;
 
-						parallaxFGSprite.visible = true;
+							parallaxFGSprite.visible = true;
+						}
 
 					}
 
@@ -677,7 +677,7 @@ var box2d = (function() {
 		createSign: createSign,
 		createTeleportor: createTeleportor,
 		createTrigger: createTrigger,
-		createSolidPiece: createSolidPiece,
+		createPhysicsBorder: createPhysicsBorder,
 		createRamp: createRamp,
 		pauseResume: pauseResume
 	}
@@ -760,12 +760,10 @@ function handleComplete(event) {
 				g.drawRect(0, 0, piece.width, piece.height);
 				piece.x = level.elements[i].x;
 				piece.y = level.elements[i].y;
-				piece.angle = level.elements[i].rotation;
+				piece.rotation = level.elements[i].rotation;
 				piece.regX = piece.width / 2;
 				piece.regY = (piece.height / 2) - 4;
 				gameSprite.addChild(piece);
-				//setup the level
-				box2d.createSolidPiece(piece);
 				break;
 			case "TileEndRight":
 				var piece = new createjs.Shape();
@@ -777,12 +775,10 @@ function handleComplete(event) {
 				g.drawRect(0, 0, piece.width, piece.height);
 				piece.x = level.elements[i].x;
 				piece.y = level.elements[i].y;
-				piece.angle = level.elements[i].rotation;
+				piece.rotation = level.elements[i].rotation;
 				piece.regX = piece.width / 2;
 				piece.regY = (piece.height / 2) - 4;
 				gameSprite.addChild(piece);
-				//setup the level
-				box2d.createSolidPiece(piece);
 				break;
 			case "TileMidDip":
 				var piece = new createjs.Shape();
@@ -793,12 +789,10 @@ function handleComplete(event) {
 				g.drawRect(0, 0, piece.width, piece.height);
 				piece.x = level.elements[i].x;
 				piece.y = level.elements[i].y;
-				piece.angle = level.elements[i].rotation;
+				piece.rotation = level.elements[i].rotation;
 				piece.regX = piece.width / 2;
 				piece.regY = (piece.height / 2) - 20;
 				gameSprite.addChild(piece);
-				//setup the level
-				box2d.createSolidPiece(piece);
 				break;
 			case "TileMidBump":
 				var piece = new createjs.Shape();
@@ -809,12 +803,10 @@ function handleComplete(event) {
 				g.drawRect(0, 0, piece.width, piece.height);
 				piece.x = level.elements[i].x;
 				piece.y = level.elements[i].y;
-				piece.angle = level.elements[i].rotation;
+				piece.rotation = level.elements[i].rotation;
 				piece.regX = piece.width / 2;
 				piece.regY = piece.height / 2;
 				gameSprite.addChild(piece);
-				//setup the level
-				box2d.createSolidPiece(piece);
 				break;
 			case "TileBlockLeft":
 				var piece = new createjs.Shape();
@@ -827,9 +819,8 @@ function handleComplete(event) {
 				piece.y = level.elements[i].y;
 				piece.regX = piece.width / 2;
 				piece.regY = piece.height / 2;
+				piece.rotation = level.elements[i].rotation;
 				gameSprite.addChild(piece);
-				//setup the level
-				box2d.createSolidPiece(piece);
 				break;
 			case "TileBlockLeft2":
 				var piece = new createjs.Shape();
@@ -842,9 +833,8 @@ function handleComplete(event) {
 				piece.y = level.elements[i].y;
 				piece.regX = piece.width / 2;
 				piece.regY = piece.height / 2;
+				piece.rotation = level.elements[i].rotation;
 				gameSprite.addChild(piece);
-				//setup the level
-				box2d.createSolidPiece(piece);
 				break;
 			case "TileBlockRight":
 				var piece = new createjs.Shape();
@@ -857,9 +847,21 @@ function handleComplete(event) {
 				piece.y = level.elements[i].y;
 				piece.regX = piece.width / 2;
 				piece.regY = piece.height / 2;
+				piece.rotation = level.elements[i].rotation;
 				gameSprite.addChild(piece);
-				//setup the level
-				box2d.createSolidPiece(piece);
+				break;
+			case "PhysicsBorderRect":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginFill("#000000").drawRect(0, 0, level.elements[i].width, level.elements[i].height);piece.width = level.elements[i].width;
+				piece.alpha = 0;
+				piece.height = level.elements[i].height;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y - 60;
+				piece.angle = level.elements[i].rotation;
+				gameSprite.addChild(piece);
+				box2d.createPhysicsBorder(piece);
 				break;
 			case "ParallaxBG":
 				var piece = new createjs.Shape();
