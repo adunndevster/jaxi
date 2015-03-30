@@ -14,6 +14,9 @@ var isFollowing = false;
 var thingToFollow;
 var CURRENT_LANGUAGE = "JAVASCRIPT";
 
+var internalCodeIsRunning = false;
+var parser = new Parser();
+
 function SynchronousController(current) { //handler
     this.current = current; //current and last current function
     this.waitStack = new Array(); //functions to wait
@@ -24,285 +27,96 @@ var _synch = new SynchronousController(undefined);
 
 var jaxi = (function () {
 
-    function jump(power)
-    { 
-		var properties = {power:power};
-        if (_synch.current !== undefined) {		
-            if (_synch.waitStack.indexOf('jump') == -1 || _synch.waitStack.length > 0) {
-                _synch.waitStack.push('jump');
-                wait('jump', properties);
-            } 
-            else
-            {
-                internal('jump', properties);
-            }
-        }
-        else
-        {
-            internal('jump', properties);
-        }
+    function test1(){ 
+		console.log("jaxi::test1");
+	}
+	
+    function test2(){ 
+		console.log("jaxi::test2");		
+	}	
+
+    function jump(power){ 
+		console.log("jaxi::jump");
+		
+		power = typeof power !== 'undefined' ? power : 400;
+		var degrees = (power < 0) ? 80 : -80;
+		b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * power,
+				Math.sin(degrees * (Math.PI / 180)) * power),
+				b2jaxi.GetWorldCenter());
+		gjaxi.gotoAndPlay("jump");        
+		hideCodePanel();
     };
 
-    function run(distance)
-    {
+    function run(distance){
+		console.log("jaxi::run");
 		
-		var properties = {distance:distance};
-		
-        if (_synch.current !== undefined) {
-
-            if (_synch.waitStack.indexOf('run') == -1 || _synch.waitStack.length > 0) {
-                _synch.waitStack.push('run');
-                wait('run', properties);
-            } 
-            else
-            {
-                internal('run', properties);
-            }
-        }
-        else
-        {
-            internal('run', properties);
-        }
-		  
-    };
-    
-    function pickUp()
-    {
-        
-       if (_synch.current !== undefined) {
-
-            if (_synch.waitStack.indexOf('pickUp') == -1 || _synch.waitStack.length > 0) {
-                _synch.waitStack.push('pickUp');
-                wait('pickUp', properties);
-            } 
-            else
-            {
-                internal('pickUp');
-            }
-        }
-        else
-        {
-            internal('pickUp');
-        }
-  
-    };
-
-    function say(words)
-    { 
-		
-		var properties = {words:words};
-		
-         if (_synch.current !== undefined) {
-
-            if (_synch.waitStack.indexOf('say') == -1 || _synch.waitStack.length > 0) {
-                _synch.waitStack.push('say');
-                wait('say', properties);
-            } 
-            else
-            {
-                internal('say', properties);
-            }
-        }
-        else
-        {
-            internal('say', properties);
-        }
-
-    };
-
-    function die()
-    { 
-         if (_synch.current !== undefined) {
-
-            if (_synch.waitStack.indexOf('die') == -1 || _synch.waitStack.length > 0) {
-                _synch.waitStack.push('die');
-                wait('die');
-            } 
-            else
-            {
-                internal('die');
-            }
-        }
-        else
-        {
-            internal('die');
-        }
-
+		distance = typeof distance !== 'undefined' ? distance : 200;
+		var degrees = 0; 
+		b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * distance, 0), b2jaxi.GetWorldCenter());
+		gjaxi.gotoAndPlay("run");
+		//bounceSound = createjs.Sound.createInstance("bounce");  // create it by id
+		//s.bounceSound.setVolume(Math.random()*0.01 + 0.01);  // because there will be a lot
+		var runSound = createjs.Sound.createInstance("sndRun");  // create it by id
+		runSound.setVolume(.1);
+		runSound.play();
+		hideCodePanel();
     };
     
     function encounters(id){
 		
-		var properties = {id:id};
+		console.log("jaxi::encounters");
 		
-		console.log("-------------------");
-		console.log("encounters #1");
+		var asset = getAssetById(id);
 		
-        if (_synch.current !== undefined) {
-
-			console.log("encounters #2");
-
-            if (_synch.waitStack.indexOf('encounters') == -1 || _synch.waitStack.length > 0) {
-				
-				console.log("encounters #2.1");
-				
-                _synch.waitStack.push('encounters');
-                wait('encounters', properties);
-                
-                console.log("encounters #2.1.1");
-            } 
-            else
-            {
-				console.log("encounters #2.2");
-				
-				internal('encounters', properties);
-                return "11111";
-            }
-        }
-        else
-        {
+		internalCodeIsRunning = false;
 			
-			console.log("encounters #3");
-			
-			internal('encounters', properties);
-            return "22222";
-        }		
-	}
-    
-    
-    function wait(action, properties){
-		
-		
-		console.log("wait #1");
-		console.log("wait #1 --> action: " + action);
-		console.log("wait #1 --> properties: " + properties);
-		
-		if (gjaxi.currentFrame == 0){
-			console.log("wait #2");
-			_synch.current = undefined;
-		}
-		
-		if (_synch.current !== undefined) {
-			console.log("wait #3");
-			setTimeout(function () { wait(action, properties); }, _synch.time);
+		if(asset != null){
+			var distance = asset.x - gjaxi.x;
+					
+			return (distance >= 0 && distance < 100 );				
 		}else{
-			console.log("wait #4");
-			if (_synch.waitStack[0] == action) {
-				console.log("wait #4.1");
-				_synch.waitStack.splice(0, 1);
-				return internal(action, properties);
-			} 
-			else
-			{
-				console.log("wait #4.2");
-				setTimeout(function () { wait(action, properties); }, _synch.time);
-			}
+			return false;
 		}
-	}
-	
-	function internal(action, properties){
+		return false;	
 		
-		/*
-		console.log("--start internal--");
-		console.log(action);
-		console.log(properties);
-		console.log("--end internal--");
-		* */
-					
-		switch(action){
-			case 'jump':
-			
-				//console.log("----jump--");
-
-				_synch.current = 'jump';
-				power = properties.power;
-				power = typeof power !== 'undefined' ? power : 400;
-				var degrees = (power < 0) ? 80 : -80;
-				b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * power,
-						Math.sin(degrees * (Math.PI / 180)) * power),
-						b2jaxi.GetWorldCenter());
-				gjaxi.gotoAndPlay("jump");        
-				hideCodePanel();
-			break;
-			case 'run':
-			
-				//console.log("----run--");
-			
-				_synch.current = 'run';
-				distance = properties.distance;
-				distance = typeof distance !== 'undefined' ? distance : 200;
-				var degrees = 0; 
-				b2jaxi.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * distance, 0), b2jaxi.GetWorldCenter());
-				gjaxi.gotoAndPlay("run");
-				//bounceSound = createjs.Sound.createInstance("bounce");  // create it by id
-				//s.bounceSound.setVolume(Math.random()*0.01 + 0.01);  // because there will be a lot
-				var runSound = createjs.Sound.createInstance("sndRun");  // create it by id
-				runSound.setVolume(.1);
-				runSound.play();
-				hideCodePanel();
-			break;		
-			case 'pickUp':
-				_synch.current = 'pickUp';
-				gjaxi.gotoAndPlay("pickup");
-				hideCodePanel();
-			break;
-			case 'say':
-				_synch.current = 'say';
-				words = properties.words;
-				speak(gjaxi, words);
-				//alert(words);
-				hideCodePanel();
-			break;
-			case 'die':
-				_synch.current = 'die';
-				gjaxi.gotoAndPlay("die");
-				gjaxi.addEventListener("animationend", function ()
-				{
-					reloadPage();
-				});
-				hideCodePanel();
-			break;		
-			case 'encounters':
-			
-			
-				//console.log("----encounters--");
-			
-				_synch.current = 'encounters';
-						
-				/*
-				id = properties.id;
-			
-				var asset = getAssetById(id);
-				
-				if(asset != null){
-
-					var distance = asset.x - gjaxi.x;
-					
-					//console.log(gjaxi.x);
-					//console.log(asset.x);
-					console.log(distance);
-					console.log("---------");			
-					
-					return (distance >= 0 && distance < 100 );
-					
-				}else{
-
-					console.log("Asset " + id + " not found");
-					return false;
-				}
-				
-				return false;	
-				* */
-				
-				return "testing...";
-					
-			break;		
-		}
+	}    
+    
+    function pickUp(){
 		
-	}
+		console.log("jaxi::pickUp");
+		
+		gjaxi.gotoAndPlay("pickup");
+		hideCodePanel();
+    };
+
+    function say(words){ 
+		
+		console.log("jaxi::say");
+		
+		words = properties.words;
+		speak(gjaxi, words);
+		//alert(words);
+		hideCodePanel();
+    };
+
+    function die(){ 
+		
+		console.log("jaxi::die");
+		
+		gjaxi.gotoAndPlay("die");
+		gjaxi.addEventListener("animationend", function ()
+		{
+			reloadPage();
+		});
+		hideCodePanel();
+    };
+   
 
     //this function makes jaxi follow something.
-    function follow(thing)
-    {
+    function follow(thing) {
+		
+		console.log("jaxi::follow");
+		
         //1. determine jaxi's distance (x, y) to the thing
         var dx = thing.x - gjaxi.x;
         var dy = thing.y - gjaxi.y;
@@ -325,14 +139,12 @@ var jaxi = (function () {
         thingToFollow = thing;
 
         //TODO: I may need to do cliff and edge detection
-    }
-    ;
+    } ;
 
     function addAction(action, param)
     {
         actions.push({action: action, param: param});
-    }
-    ;
+    } ;
 
     function clearActions()
     {
@@ -367,16 +179,15 @@ var jaxi = (function () {
         follow: follow,
         addAction: addAction,
         clearActions: clearActions,
-        doActions: doActions
+        doActions: doActions,
+        test1: test1,
+        test2: test2,
     };
 })();
 
 //now setup jaxis vars
 jaxi.isAlive = true;
 
- 
- 
-//non jaxi functions...
 
 function runCode()
 {
@@ -387,7 +198,12 @@ function runCode()
     if(CURRENT_LANGUAGE === "JAVASCRIPT"){         
         try
         {
-            eval(commandString);
+
+			var code = parser.parseFromJavascript(commandString);
+							
+			parser.init(code);
+			//eval(commandString);
+
         } catch (err)
         {
             console.log(err.message);

@@ -24,9 +24,13 @@ var bodiesToRemove = [];
 
 var isChopperUp = false;
 
+isFollowing = false;
+
 
 function Main()
 {
+	
+	
 	//get the url vars
 	urlVars = getUrlVars();
 	//example
@@ -1193,6 +1197,8 @@ function handleComplete(event) {
 	
 	
 	createTooltip(0, 0, "test");
+	
+	//gjaxi.addEventListener("tick", function() { console.log(gjaxi.currentAnimation); });
 }
 
 function getCharacterPosition(skin)
