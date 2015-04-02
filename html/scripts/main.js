@@ -23,10 +23,18 @@ var b2ContactListener = Box2D.Dynamics.b2ContactListener;
 var bodiesToRemove = [];
 
 var isChopperUp = false;
+<<<<<<< HEAD
 var isCameraOn = true;
+=======
+
+isFollowing = false;
+
+>>>>>>> 2ee3c1882bf3e88d92af71aa937e7a6e0c8190d1
 
 function Main()
 {
+	
+	
 	//get the url vars
 	urlVars = getUrlVars();
 	//example
@@ -1195,6 +1203,8 @@ function handleComplete(event) {
 	
 	
 	createTooltip(0, 0, "test");
+	
+	//gjaxi.addEventListener("tick", function() { console.log(gjaxi.currentAnimation); });
 }
 
 function getCharacterPosition(skin)
