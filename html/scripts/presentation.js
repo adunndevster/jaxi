@@ -146,6 +146,22 @@ function doZoom(amount, speed)
 {
 	speed = typeof speed !== 'undefined' ? speed : 600;
 	createjs.Tween.get(window).to({zoom:amount}, speed, createjs.Ease.quadInOut);
+	
+	if(amount > zoom)
+	{
+		createjs.Tween.get(gameSprite).to({x:-(gjaxi.x * amount) + 300, y:-(gjaxi.y * amount) + 480 }, speed, createjs.Ease.quadInOut);
+	} else {
+		if(levelCamera && amount >= zoom)
+		{
+			createjs.Tween.get(gameSprite).to({x:-(gjaxi.x * amount) + 300, y:-(gjaxi.y * amount) + 480 }, speed, createjs.Ease.quadInOut);
+	
+		} else {
+			createjs.Tween.get(gameSprite).to({x:0, y:0 }, speed, createjs.Ease.quadInOut);
+
+		}
+	}
+	
+	
 }
 
 function showHandbook()
