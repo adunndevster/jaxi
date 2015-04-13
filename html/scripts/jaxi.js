@@ -71,9 +71,15 @@ var jaxi = (function () {
 		internalCodeIsRunning = false;
 			
 		if(asset != null){
+
+			//console.log("asset: " + asset.x);
+			//console.log("gjaxi: " + gjaxi.x);
+			
 			var distance = asset.x - gjaxi.x;
+			
+			//console.log("distance: " + distance);
 					
-			return (distance >= 0 && distance < 100 );				
+			return (distance >= 0 && distance < 180 );				
 		}else{
 			return false;
 		}

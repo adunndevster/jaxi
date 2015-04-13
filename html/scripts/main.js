@@ -26,6 +26,8 @@ var isChopperUp = false;
 
 isFollowing = false;
 
+var tooltip;
+
 
 function Main()
 {
@@ -729,75 +731,7 @@ function getAssetById(id)
 	}	
 	
 	return null;
-	
-	
-}
 
-var tooltipContainer;
-var tooltip;
-
-
-function createTooltip(x, y, text){
-	
-	var width = 200, height = 50;
-	
-	tooltipContainer = new createjs.Container();
-	tooltipContainer.x = x;
-	tooltipContainer.y = y;
-	//tooltipContainer.setBounds(0, 0, width, height);	
-	
-	var rect = new createjs.Shape();
-	rect.graphics.setStrokeStyle(1,"square").beginStroke("#000000");
-	rect.graphics.beginFill('#FFFFFF').drawRect(0, 0, width, height);
-	
-	tooltipContainer.addChild(rect);
-	
-	var tooltipText = new createjs.Text();
-	tooltipText.set({
-		text: 'hello: ' + text,
-		font: "26px Arial",
-		color: "#000000",
-		textAlign: "center"
-	});	
-	
-	tooltipText.name = "tooltipText";
-	
-	tooltipText.x = rect.x + (width / 2);
-	tooltipText.y = rect.y + (height / 2) - 10;
-		
-	/*
-	var b = tooltipText.getBounds();
-	tooltipText.x = width - b.width/2; 
-	tooltipText.y = height - b.height/2;	
-	* */
-	
-	tooltipContainer.alpha = 0;
-	tooltipContainer.addChild(tooltipText);
-	gameSprite.addChild(tooltipContainer);	
-	
-}
-
-function showTooltip(x, y, text){
-	
-	tooltipContainer.x = x;
-	tooltipContainer.y = y;
-
-	var tooltipText = tooltipContainer.getChildByName("tooltipText");
-	tooltipText.text = text;
-	
-	tooltipContainer.alpha = 0;
-	createjs.Tween.get(tooltipContainer, {override:true})
-         .wait(0)
-         .to({alpha:1, visible:true}, 700);	
-	
-}
-
-function hideTooltip(){
-	
-	createjs.Tween.removeTweens(tooltipContainer);
-	
-	//tooltipContainer.visible = false;
-	tooltipContainer.alpha = 0;
 }
 
 function handleMouseOver(event) {
@@ -806,11 +740,11 @@ function handleMouseOver(event) {
 	
 	var type = target.type !== undefined ? target.type : "Object";
 		
-	showTooltip((target.x - target.regX), (target.y - target.regY - 10), type + ": " + target.id)
+	tooltip.showTooltip((target.x - target.regX), (target.y - target.regY - 10), type + ": " + target.id)
 }
 
 function handleMouseOut(event) {
-    hideTooltip();
+    tooltip.hideTooltip();
 }
 
 function handleComplete(event) {
@@ -847,9 +781,6 @@ function handleComplete(event) {
 
 				gjaxi.regX = (gjaxi.getBounds().width/2) - 80;
 				gjaxi.regY = (gjaxi.getBounds().height/2) + 50;
-				
-				gjaxi.onMouseOver = handleMouseOver;
-				gjaxi.onMouseOut = handleMouseOut;
 				
 				gameSprite.addChild(gjaxi);  //you can add multiple children here...
 				box2d.createPink(gjaxi);
@@ -1159,11 +1090,6 @@ function handleComplete(event) {
 				piece.x = level.elements[i].x - (piece.width/2);
 				piece.y = level.elements[i].y - (piece.height/2);
 				
-				if(level.elements[i].type == 'RobotJunk1'){
-					piece.type = level.elements[i].type;
-					piece.onMouseOver = handleMouseOver;
-					piece.onMouseOut = handleMouseOut;		
-				}
 
 				gameSprite.addChild(piece);
 				
@@ -1196,9 +1122,38 @@ function handleComplete(event) {
 	$('#loadScreen').css("display", "none");
 	
 	
-	createTooltip(0, 0, "test");
+	//--------------------------------------
 	
-	//gjaxi.addEventListener("tick", function() { console.log(gjaxi.currentAnimation); });
+
+	
+	var obstacleFactory = new ObstacleFactory();
+	var tire = obstacleFactory.createObstacle("tire");
+	var cone = obstacleFactory.createObstacle("cone");
+	var box = obstacleFactory.createObstacle("box");
+	
+	gameSprite.addChild(tire, cone, box);	
+
+	tire.y = cone.y = box.y = 520;
+	tire.scaleX = cone.scaleX = box.scaleX = tire.scaleY = cone.scaleY = box.scaleY = 4;
+	
+	tire.x = 2300;
+	tire.onMouseOver = handleMouseOver;
+	tire.onMouseOut = handleMouseOut;	
+		
+	cone.x = 1500;
+	cone.onMouseOver = handleMouseOver;
+	cone.onMouseOut = handleMouseOut;		
+	
+	box.x = 1800;
+	box.onMouseOver = handleMouseOver;
+	box.onMouseOut = handleMouseOut;		
+	
+
+	
+	tooltip = Tooltip.getInstance();
+	
+	
+	//--------------------------------------
 }
 
 function getCharacterPosition(skin)
