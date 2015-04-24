@@ -28,6 +28,9 @@ isFollowing = false;
 var tooltip;
 
 
+var obstacles = [];
+
+
 function Main()
 {
 	
@@ -379,6 +382,7 @@ var box2d = (function() {
 	}
 	
 	var createPhysicsBorder = function(skin) {
+		
 		var pieceFixture = new b2FixtureDef;
 		pieceFixture.density = 1;
 		pieceFixture.restitution = .1;
@@ -676,6 +680,10 @@ var box2d = (function() {
 		} else { TIMESTEP = 1/STEP; }
 		lastTimestamp = Date.now();
 	}
+	
+	var createTesting = function() {
+		console.log("--createTesting--");
+	}
 
 	return {
 		setup: setup,
@@ -687,6 +695,7 @@ var box2d = (function() {
 		createTeleportor: createTeleportor,
 		createTrigger: createTrigger,
 		createPhysicsBorder: createPhysicsBorder,
+		createTesting: createTesting,
 		createRamp: createRamp,
 		pauseResume: pauseResume
 	}
@@ -733,6 +742,27 @@ function getAssetById(id)
 
 }
 
+function getObstaclesByType(type)
+{
+	
+	console.log("type: " + type);
+	
+	var obstaclesFound = [];
+	
+	
+	for (var i = 0; i < obstacles.length; i++)//or for(var i in c.children)
+	{
+		var child = obstacles[i];
+		if(child.type == type){
+			obstaclesFound.push(child);
+		}
+	}	
+	
+	
+	return obstaclesFound;
+
+}
+
 function handleMouseOver(event) {
 	var target = event.target;
 	//console.log(target.type);
@@ -755,6 +785,9 @@ function handleComplete(event) {
 	for(var i=0; i<level.elements.length; i++)
 	{
 		var item = getAssetByType(level.elements[i].type);
+		
+		//console.log(item);
+		
 		var id = item.id;
 		var result = loader.getResult(id);
 
@@ -890,7 +923,8 @@ function handleComplete(event) {
 			case "PhysicsBorderRect":
 				var piece = new createjs.Shape();
 				var g = piece.graphics;
-				g.beginFill("#000000").drawRect(0, 0, level.elements[i].width, level.elements[i].height);piece.width = level.elements[i].width;
+				g.beginFill("#000000").drawRect(0, 0, level.elements[i].width, level.elements[i].height);
+				piece.width = level.elements[i].width;
 				piece.alpha = 0;
 				piece.height = level.elements[i].height;
 				g.drawRect(0, 0, piece.width, piece.height);
@@ -1122,15 +1156,14 @@ function handleComplete(event) {
 	//Now show the page...
 	$('#loadScreen').css("display", "none");
 	
-	
 	//--------------------------------------
-	
-
-	
+	/*
 	var obstacleFactory = new ObstacleFactory();
 	var tire = obstacleFactory.createObstacle("tire");
 	var cone = obstacleFactory.createObstacle("cone");
 	var box = obstacleFactory.createObstacle("box");
+	
+	obstacles.push(tire, cone, box);
 	
 	gameSprite.addChild(tire, cone, box);	
 
@@ -1140,21 +1173,42 @@ function handleComplete(event) {
 	tire.x = 2300;
 	tire.onMouseOver = handleMouseOver;
 	tire.onMouseOut = handleMouseOut;	
-		
+
 	cone.x = 1500;
 	cone.onMouseOver = handleMouseOver;
-	cone.onMouseOut = handleMouseOut;		
+	cone.onMouseOut = handleMouseOut;	
+	
+	createAssetsPhysicsBorder(cone);
 	
 	box.x = 1800;
 	box.onMouseOver = handleMouseOver;
 	box.onMouseOut = handleMouseOut;		
-	
-
+	*/
 	
 	tooltip = Tooltip.getInstance();
-	
+
 	
 	//--------------------------------------
+}
+
+function createAssetsPhysicsBorder(asset){
+
+	asset.width = 80;
+	asset.height = 60;
+	
+	var piece = new createjs.Shape();
+	var g = piece.graphics;
+	g.beginFill("#000000").drawRect(0, 0, asset.width, asset.height);
+	piece.width = asset.width;
+	piece.alpha = 1;
+	piece.height = asset.height;
+	g.drawRect(0, 0, piece.width, piece.height);
+	piece.x = asset.x - (asset.width/2);
+	piece.y = asset.y - 60;
+	piece.angle = asset.rotation;
+	
+	//gameSprite.addChild(piece);
+	box2d.createPhysicsBorder(piece);
 }
 
 function getCharacterPosition(skin)

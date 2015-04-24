@@ -110,6 +110,8 @@ Parser.prototype.getExpressionStatement = function(code){
 	var callee 		= object + '.' + property;
 	var statement 	= callee + '(' + arguments + ')' + ';';
 	
+	//console.log(statement);
+	
 	return statement;
 }
 
@@ -120,12 +122,26 @@ Parser.prototype.getExpressionStatement = function(code){
  * @return {string} The arguments separated by comma.
  */
 Parser.prototype.getArguments = function(arguments){
+	
+	//console.log(JSON.stringify(arguments,null,2));
+	
 	//Output array with the arguments
 	var output = [];
+	
 	//Loops over all arguments and save them in the array
 	for (var i = 0; i < arguments.length; i++) {
-		output.push(arguments[i].value);
+		
+		if(arguments[i].type == "Literal"){
+			output.push(arguments[i].raw);
+		}else if(arguments[i].type == "UnaryExpression"){
+			
+			if(arguments[i].prefix == true){				
+				value = arguments[i].operator + "" + arguments[i].argument.raw;
+				output.push(value);
+			}
+		}
 	}
+
 	//Return the arguments separated by comma
 	return output.join(', ');
 }

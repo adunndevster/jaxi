@@ -48,7 +48,7 @@ var jaxi = (function () {
     };
 
     function run(distance){
-		console.log("jaxi::run");
+		console.log("jaxi::run -> " + distance);
 		
 		distance = typeof distance !== 'undefined' ? distance : 200;
 		var degrees = 0; 
@@ -62,24 +62,41 @@ var jaxi = (function () {
 		hideCodePanel();
     };
     
-    function encounters(id){
+    //function encounters(id){
+	function encounters(type){
 		
-		console.log("jaxi::encounters");
+		console.log("jaxi::encounters: " + type);
 		
-		var asset = getAssetById(id);
+		//var asset = getAssetById(id);
+		var obstacles = getObstaclesByType(type);
 		
 		internalCodeIsRunning = false;
+	
 			
-		if(asset != null){
+		if(obstacles.length > 0){
 
 			//console.log("asset: " + asset.x);
 			//console.log("gjaxi: " + gjaxi.x);
 			
-			var distance = asset.x - gjaxi.x;
+			var flag = false;
+			
+			for (var i = 0; i < obstacles.length; i++){
+				var obstacle = obstacles[i];
+				
+				var distance = obstacle.x - gjaxi.x;
+
+				if(Math.abs(distance) >= 0 && Math.abs(distance) < 180 ){
+					flag = true;
+				}
+			}
+			
+			console.log("flag: " + flag);
+			
+			//var distance = asset.x - gjaxi.x;
 			
 			//console.log("distance: " + distance);
 					
-			return (distance >= 0 && distance < 180 );				
+			return flag;				
 		}else{
 			return false;
 		}
@@ -206,6 +223,8 @@ function runCode()
         {
 
 			var code = parser.parseFromJavascript(commandString);
+			
+			//console.log(JSON.stringify(code,null,2));
 							
 			parser.init(code);
 			//eval(commandString);

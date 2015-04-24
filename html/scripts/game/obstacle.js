@@ -1,7 +1,7 @@
 (function(window){
 	
 	function ObstacleFactory(){
-		console.log("ObstacleFactory::Constructor");
+		//console.log("ObstacleFactory::Constructor");
 		
 		//Factory function to create obstacles
 		ObstacleFactory.prototype.createObstacle = function (type) {
@@ -29,28 +29,29 @@
 	//-------------------------------------------------------------
 	
 	var Obstacle = function(spritesheet){
-		console.log("Obstacle");
+		//console.log("Obstacle");
 		this.initialize(spritesheet);
 	}
 	
 	Obstacle.prototype = new createjs.BitmapAnimation();
 	Obstacle.prototype.BitmapAnimation_initialize = Obstacle.prototype.initialize;
 	Obstacle.prototype.initialize = function(spritesheet) {
+				
 		this.BitmapAnimation_initialize(spritesheet);
 		
 		this.snapToPixel = true;
-		
-		//this.regX = (this.getBounds().width/2);
-		//this.regY = (this.getBounds().height/2);		
+		this.type = spritesheet.type;
 		
 		this.gotoAndPlay("idle");
 		
 		//this.shadow = new createjs.Shadow("#000000", 5, 5, 10);
 	}
 	
+	
 	//-------------------------------------------------------------	
 	var ObstacleBoxSpriteSheet = function(){
-		console.log("ObstacleBoxSpriteSheet");
+		//console.log("ObstacleBoxSpriteSheet");
+		this.type = "box";
 	}
 	
 	ObstacleBoxSpriteSheet.prototype = new createjs.SpriteSheet({
@@ -62,7 +63,8 @@
 	});	
 	//-------------------------------------------------------------	
 	var ObstacleTireSpriteSheet = function(){
-		console.log("ObstacleTireSpriteSheet");
+		//console.log("ObstacleTireSpriteSheet");
+		this.type = "tire";
 	}
 	
 	ObstacleTireSpriteSheet.prototype = new createjs.SpriteSheet({
@@ -74,7 +76,8 @@
 	});	
 	//-------------------------------------------------------------	
 	var ObstacleConeSpriteSheet = function(){
-		console.log("ObstacleConeSpriteSheet");
+		//console.log("ObstacleConeSpriteSheet");
+		this.type = "cone";
 	}
 	
 	ObstacleConeSpriteSheet.prototype = new createjs.SpriteSheet({
