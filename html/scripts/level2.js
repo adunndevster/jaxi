@@ -36,7 +36,7 @@ var conversations = [
 	{actions: [
 		{character: "Choco", value: "isCameraOn = true;", type: "js"},
 		{character: "Choco", value: "doZoom(.6)", type: "js"},
-		/*{character: "Choco", value: "Hey! What's that racket!?", type: "speak"},
+		{character: "Choco", value: "Hey! What's that racket!?", type: "speak"},
 		{character: "Choco", value: "Sorry... spending eons in this junk yard alone has hurt my people skills...", type: "speak"},
 		{character: "Choco", value: "So what's your name?", type: "speak"},
 		{character: "gjaxi", value: "I'm Jaxi.", type: "speak"},
@@ -54,7 +54,7 @@ var conversations = [
 		{character: "Choco", value: "This handbook contains a list of all of your built-in functions.  You can refer to it any time.", type: "speak"},
 		{character: "Choco", value: "fadeCodePanelOut();", type: "js"},
 		{character: "Choco", value: "showCodePanel();", type: "js"},
-		{character: "Choco", value: "C'mon.  Lemme show you around...", type: "speak"},*/
+		{character: "Choco", value: "C'mon.  Lemme show you around...", type: "speak"},
 		{character: "Choco", value: "fadeCodePanelIn();", type: "js"},
 		{character: "Choco", value: "Here, type this into your code panel and run it:<br><br><span class='codeExample'>jaxi.run();<br>jaxi.jump();<br>jaxi.run(150);<br>jaxi.jump();<br>jaxi.run(500);</span> ", type: "speak"},
 		{character: "Choco", value: "chocobot.jump();", type: "js"},
