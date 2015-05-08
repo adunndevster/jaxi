@@ -9,10 +9,17 @@ var manifest = [
 	{src: "assets/images/mcTileMidDip.png", id: "PhysicsBorderRect"},
 	{src: "assets/images/junkyard/mcTileMidDip.png", id: "TileMidDip"},
 	{src: "assets/images/junkyard/mcTileMidBump.png", id: "TileMidBump"},
+<<<<<<< HEAD
 	{src: "assets/images/mcTileEndLeft.png", id: "TileEndLeft"},
 	{src: "assets/images/mcTileEndRight.png", id: "TileEndRight"},
 	{src: "assets/images/junkyard/mcTileBlockLeft.png", id: "TileBlockLeft"},
 	{src: "assets/images/mcTileBlockLeft2.png", id: "TileBlockLeft2"},
+=======
+	{src: "assets/images/junkyard/mcTileEndLeft.png", id: "TileEndLeft"},
+	{src: "assets/images/junkyard/mcTileEndRight.png", id: "TileEndRight"},
+	{src: "assets/images/junkyard/mcTileBlockLeft.png", id: "TileBlockLeft"},
+	{src: "assets/images/junkyard/mcTileBlockLeft2.png", id: "TileBlockLeft2"},
+>>>>>>> 62700ea6bfe60cf44167b803a3b0da65a5918adf
 	{src: "assets/images/junkyard/mcTileBlockRight.png", id: "TileBlockRight"},
 	{src: "assets/images/mcRobotJunk1.png", id: "RobotJunk1"},
 	{src: "assets/images/mcRobotJunk2.png", id: "RobotJunk2"},
