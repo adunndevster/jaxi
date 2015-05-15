@@ -121,6 +121,9 @@ function runConversation(convoId)
 function doNextConversationElement()
 {
 	var action = conversation.actions[currentConversationAction];
+
+	console.log(action);
+
 	if(action.type == 'speak')
 	{
 		speak(action.character, action.value);
@@ -134,13 +137,13 @@ function doNextConversationElement()
 	var bubbleLength = action.value.length * 60;
 	if(bubbleLength < 1250) bubbleLength = 1250;
 
+	
 	if((action.type != 'speak')&&(currentConversationAction < conversation.actions.length)){
-		//doNextConversationElement();
 		setTimeout(doNextConversationElement, bubbleLength);
 	}else if(currentConversationAction >= conversation.actions.length){
 		setTimeout(fadeCodePanelIn, bubbleLength);
 	}
-
+	
 
 
 	/*
@@ -151,6 +154,7 @@ function doNextConversationElement()
 		setTimeout(fadeCodePanelIn, bubbleLength);
 	}
 	*/
+	
 }
 
 
@@ -170,11 +174,12 @@ function getUrlVars()
 
 function doZoom(amount, speed)
 {
-
-	console.log(amount);
-
 	speed = typeof speed !== 'undefined' ? speed : 600;
 	createjs.Tween.get(window).to({zoom:amount}, speed, createjs.Ease.quadInOut);
+
+	if(typeof levelCamera === 'undefined'){
+		levelCamera = false;
+	}	
 	
 	if(amount > zoom)
 	{
@@ -195,6 +200,7 @@ function doZoom(amount, speed)
 
 function showHandbook()
 {
+	document.getElementById('handbook').style.zIndex = 1010;
 	$('#handbook').animate({opacity:'1'}, 250);
 
 
@@ -202,5 +208,6 @@ function showHandbook()
 
 function hideHandbook()
 {
+	document.getElementById('handbook').style.zIndex = -1010;
 	$('#handbook').animate({opacity:'0'}, 250);
 }

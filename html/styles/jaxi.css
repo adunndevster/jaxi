@@ -190,7 +190,7 @@ button.css3button:hover
 {
 	position: absolute;
 
-	z-index: 1010;
+	z-index: -1010;
 	width: 400px;
 	height: 500px;
 	left: 16%;
@@ -228,7 +228,7 @@ button.css3button:hover
 #handbookControls
 {
 	position: relative;
-	right: -765px;
+	right: -365px;
 	top: -40px;
 }
 
