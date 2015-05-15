@@ -534,12 +534,6 @@ var box2d = (function() {
 		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
 		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
 		
-		
-		
-		console.log(p1);
-		console.log(p2);
-		console.log(p3);
-		
 		pieceFixture.shape.SetAsArray([p1,p2,p3]);
 		var pieceBodyDef = new b2BodyDef;
 		pieceBodyDef.type = b2Body.b2_staticBody;

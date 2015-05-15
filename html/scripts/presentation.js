@@ -80,6 +80,9 @@ function speak(actor, words) //actor is a skin like Choco
 
 
 	document.getElementById('wordsBubble').innerHTML = words;
+	
+	document.getElementById('wordsBubble').innerHTML += "<div class='button_next'><a href='#' onClick='showNextConversation(); return false;'><img src='assets/images/junkyard/button_next.png'></a></div>";
+	
 	document.getElementById('speechContainer').style.left = (bubblePos.x - 150) + 'px';
 	document.getElementById('speechContainer').style.top = (bubblePos.y - 100) + 'px';
 }
@@ -87,6 +90,18 @@ function speak(actor, words) //actor is a skin like Choco
 function hideSpeechBubble()
 {
 	document.getElementById('speechContainer').style.left = '-2000px';
+}
+
+function showNextConversation(){
+	//alert('hola!');
+
+	if(currentConversationAction < conversation.actions.length)
+	{
+		doNextConversationElement();
+	} else {
+		fadeCodePanelIn();
+	}
+
 }
 
 
@@ -119,12 +134,23 @@ function doNextConversationElement()
 	var bubbleLength = action.value.length * 60;
 	if(bubbleLength < 1250) bubbleLength = 1250;
 
+	if((action.type != 'speak')&&(currentConversationAction < conversation.actions.length)){
+		//doNextConversationElement();
+		setTimeout(doNextConversationElement, bubbleLength);
+	}else if(currentConversationAction >= conversation.actions.length){
+		setTimeout(fadeCodePanelIn, bubbleLength);
+	}
+
+
+
+	/*
 	if(currentConversationAction < conversation.actions.length)
 	{
 		setTimeout(doNextConversationElement, bubbleLength);
 	} else {
 		setTimeout(fadeCodePanelIn, bubbleLength);
 	}
+	*/
 }
 
 
@@ -144,6 +170,9 @@ function getUrlVars()
 
 function doZoom(amount, speed)
 {
+
+	console.log(amount);
+
 	speed = typeof speed !== 'undefined' ? speed : 600;
 	createjs.Tween.get(window).to({zoom:amount}, speed, createjs.Ease.quadInOut);
 	

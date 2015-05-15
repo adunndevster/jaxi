@@ -181,7 +181,10 @@ button.css3button:hover
 	padding: 15px;
 	border-radius: 8px;
 }
-
+	#wordsBubble div.button_next{
+	    text-align: right;
+	    clear: both;
+	}
 
 #handbook
 {
