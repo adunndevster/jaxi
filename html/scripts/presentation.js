@@ -93,13 +93,15 @@ function hideSpeechBubble()
 }
 
 function showNextConversation(){
-	//alert('hola!');
 
 	if(currentConversationAction < conversation.actions.length)
 	{
+		console.log("showNextConversation #1");
 		doNextConversationElement();
 	} else {
+		console.log("showNextConversation #2");
 		fadeCodePanelIn();
+		hideSpeechBubble();
 	}
 
 }
