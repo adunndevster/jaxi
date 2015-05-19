@@ -131,6 +131,7 @@ function doNextConversationElement()
 		speak(action.character, action.value);
 	} else if(action.type == 'js')
 	{
+		hideSpeechBubble();
 		eval(action.value);
 	}
 
@@ -141,6 +142,7 @@ function doNextConversationElement()
 
 	
 	if((action.type != 'speak')&&(currentConversationAction < conversation.actions.length)){
+		hideSpeechBubble();
 		setTimeout(doNextConversationElement, bubbleLength);
 	}else if(currentConversationAction >= conversation.actions.length){
 		setTimeout(fadeCodePanelIn, bubbleLength);
