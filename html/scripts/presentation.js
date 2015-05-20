@@ -109,6 +109,9 @@ function showNextConversation(){
 
 function runConversation(convoId)
 {
+
+	//console.log("--runConversation");
+
 	currentConversationAction = 0;
 
 	fadeCodePanelOut();
@@ -124,7 +127,7 @@ function doNextConversationElement()
 {
 	var action = conversation.actions[currentConversationAction];
 
-	console.log(action);
+	//console.log(action);
 
 	if(action.type == 'speak')
 	{
