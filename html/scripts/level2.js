@@ -42,8 +42,8 @@ var conversations = [
 
 		{character: "Choco", value: "Hey! What's that racket!?", type: "speak"},
 		{character: "Choco", value: "Sorry spending eons in this junkyard alone has hurt my people skills.", type: "speak"},
-		{character: "Choco", value: "So I guess you saw that BlueBot International didn’t give much in the way of instructions...", type: "speak"},
-		{character: "Choco", value: "My name is Chocobot.  What’s yours?", type: "speak"},
+		{character: "Choco", value: "So I guess you saw that BlueBot International didn't give much in the way of instructions...", type: "speak"},
+		{character: "Choco", value: "My name is Chocobot.  What's yours?", type: "speak"},
 
 		{character: "gjaxi", value: "I'm Jaxi.", type: "speak"},
 
@@ -53,12 +53,12 @@ var conversations = [
 
 		{character: "Choco", value: "Okay, okay, work with me. My circuits are still warming up.", type:"speak"},
 		{character: "Choco", value: "Like you, I was kicked out of BlueBot International just for being different.", type: "speak"},
-		{character: "Choco", value: "Since then, I’ve just been roaming this junkyard learning everything I can about myself.", type: "speak"},
-		{character: "Choco", value: "Jaxi, I’ve seen bots come through here before, and not many of them make it.  Just take a look around.", type: "speak"},
+		{character: "Choco", value: "Since then, I've just been roaming this junkyard learning everything I can about myself.", type: "speak"},
+		{character: "Choco", value: "Jaxi, I've seen bots come through here before, and not many of them make it.  Just take a look around.", type: "speak"},
 		{character: "Choco", value: "I have a good feeling about you though. You seem smart, and I want to help you.", type: "speak"},
 		{character: "Choco", value: "Jaxi, did you know we are “programmable”?", type: "speak"},
 		{character: "Choco", value: "That means you can write code, and control your destiny.", type: "speak"},
-		{character: "Choco", value: "Here try putting this in your code panel and click ‘Run Code’.", type: "speak"},
+		{character: "Choco", value: "Here try putting this in your code panel and click ‘Run Code'.", type: "speak"},
 		{character: "Choco", value: "Here, type this into your code panel and run it:<br><br><span class='codeExample'>jaxi.run();<br>jaxi.jump();<br>jaxi.run(150);<br>jaxi.jump();<br>jaxi.run(500);</span> ", type: "speak"},
 		
 		{character: "Choco", value: "hideSpeechBubble();", type: "js"},

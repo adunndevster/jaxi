@@ -44,12 +44,12 @@ var conversations = [
 		{character: "Choco", value: "//timeout", type: "js"},
 
 		{character: "Choco", value: "Nice job Jaxi. Now I want you to try it on your own.", type: "speak"},
-		{character: "Choco", value: "Here, I’m going to give you something that you will find useful.  It’s your API handbook.", type: "speak"},
+		{character: "Choco", value: "Here, I'm going to give you something that you will find useful.  It's your API handbook.", type: "speak"},
 		{character: "Choco", value: "<strong>API</strong> stands for <strong>Application Programming interface.</strong>", type: "speak"},
 		
 		{character: "gjaxi", value: "zzzzzz...", type: "speak"},
 		
-		{character: "Choco", value: "Yeah, I get it. It’s just a fancy way of showing you what you can do out of the box!", type: "speak"},
+		{character: "Choco", value: "Yeah, I get it. It's just a fancy way of showing you what you can do out of the box!", type: "speak"},
 		{character: "Choco", value: "hideSpeechBubble();", type: "js"},
 
 		{character: "Choco", value: "Refer to it anytime!", type: "speak"},
