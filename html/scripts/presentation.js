@@ -110,7 +110,7 @@ function showNextConversation(){
 function runConversation(convoId)
 {
 
-	//console.log("--runConversation");
+	console.log("--runConversation");
 
 	currentConversationAction = 0;
 
