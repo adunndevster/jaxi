@@ -178,12 +178,46 @@ function getUrlVars()
 	return vars;
 }
 
+//function showStage(amount, speed, route){
+function showStage(camera){
+	
+	console.log(camera);
+
+	//speed = typeof speed !== 'undefined' ? speed : 600;
+
+
+	//First zoom in to Jaxi
+	createjs.Tween.get(window)
+		.to({zoom:camera.zoomInAmount}, camera.zoomInSpeed, createjs.Ease.quadInOut)
+		.call(showStageZoomComplete);
+
+	function showStageZoomComplete() {
+		createjs.Tween.get(gameSprite)
+			.to({x:-camera.walkDistance}, camera.walkSpeed, createjs.Ease.quadInOut)
+			.call(showStageRouteComplete);
+    }
+
+	function showStageRouteComplete() {
+		//createjs.Tween.get(gameSprite).to({x:0, y:0 }, 2000, createjs.Ease.quadInOut);
+		createjs.Tween.get(gameSprite).
+			to({x:-(gjaxi.x * camera.zoomInAmount) + 300, y:-(gjaxi.y * camera.zoomInAmount) + 480 }, camera.walkSpeed, createjs.Ease.quadInOut)
+			.call(showStageFinalZoomComplete);
+    }
+
+    function showStageFinalZoomComplete() {
+
+		createjs.Tween.get(window)
+			.to({zoom:camera.zoomOutAmount}, camera.zoomOutSpeed, createjs.Ease.quadInOut);
+    }
+
+}
 
 function doZoom(amount, speed)
 {
 	speed = typeof speed !== 'undefined' ? speed : 600;
 	createjs.Tween.get(window).to({zoom:amount}, speed, createjs.Ease.quadInOut);
 
+	/*
 	if(typeof levelCamera === 'undefined'){
 		levelCamera = false;
 	}	
@@ -201,7 +235,7 @@ function doZoom(amount, speed)
 
 		}
 	}
-	
+	*/
 	
 }
 
