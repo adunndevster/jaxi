@@ -252,3 +252,20 @@ function hideHandbook()
 	document.getElementById('handbook').style.zIndex = -1010;
 	$('#handbook').animate({opacity:'0'}, 250);
 }
+
+// Find the right method, call on correct element
+function launchIntoFullscreen() {
+
+	element = document.getElementById('gameFrame');
+	console.log(element);
+
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if(element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  }
+}
