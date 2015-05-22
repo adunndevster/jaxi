@@ -257,15 +257,47 @@ function hideHandbook()
 function launchIntoFullscreen() {
 
 	element = document.getElementById('gameFrame');
-	console.log(element);
 
-  if(element.requestFullscreen) {
-    element.requestFullscreen();
-  } else if(element.mozRequestFullScreen) {
-    element.mozRequestFullScreen();
-  } else if(element.webkitRequestFullscreen) {
-    element.webkitRequestFullscreen();
-  } else if(element.msRequestFullscreen) {
-    element.msRequestFullscreen();
-  }
+	if (!element.fullscreenElement &&    // alternative standard method
+	  !element.mozFullScreenElement && !element.webkitFullscreenElement && !element.msFullscreenElement ) {  // current working methods
+		if (element.requestFullscreen) {
+		  	element.requestFullscreen();
+		} else if (element.msRequestFullscreen) {
+		  	element.msRequestFullscreen();
+		} else if (element.mozRequestFullScreen) {
+		  	element.mozRequestFullScreen();
+		} else if (element.webkitRequestFullscreen) {
+		  	element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+		}
+	} else {
+		if (element.exitFullscreen) {
+		  	element.exitFullscreen();
+		} else if (element.msExitFullscreen) {
+		  	element.msExitFullscreen();
+		} else if (element.mozCancelFullScreen) {
+		  	element.mozCancelFullScreen();
+		} else if (element.webkitExitFullscreen) {
+		  	element.webkitExitFullscreen();
+		}
+	}
+
+	canvas.width = window.innerWidth;
+	//canvas.height = window.innerHeight;
+
+	canvas.style.width  = '100%';
+	//canvas.style.height = '100%';	
+
+	var gameBackground = document.getElementById("gameBackground");
+	gameBackground.width =  window.innerWidth;
+	gameBackground.height = window.innerHeight;
+	gameBackground.style.width  = '100%';
+
 }
+
+
+
+document.getElementById('gameFrame').addEventListener("fullscreenchange", 
+	function() { 
+		console.log("cambio!!"); 
+	}
+);

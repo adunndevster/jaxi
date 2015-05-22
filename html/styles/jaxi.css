@@ -4,10 +4,14 @@ body
 	background-image: url("../assets/images/Pink_Grey.png");
 }
 
-.gameFrame
-{
+#gameFrame, #mainStage, #debugCanvas{
 	width: 1024px;
 	height: 768px;
+}
+
+.gameFrame
+{
+
 	margin: 0 auto;
 	margin-top: 20px;
 	overflow: hidden;
@@ -258,4 +262,39 @@ button.css3button:hover
 	color: #FFFFFF;
 	line-height: 22pt;
 	padding: 6px;
+}
+
+/*-----------------------------------------------------*/
+
+#gameFrame:-webkit-full-screen {
+	width: 100%;
+}
+ 
+#gameFrame:-moz-full-screen {
+	width: 100%;
+}
+ 
+#gameFrame:-ms-fullscreen {
+	width: 100%;
+}
+ 
+#gameFrame:fullscreen {
+	width: 100%;
+}
+
+
+#gameBackground:-webkit-full-screen {
+	width: 100%;
+}
+ 
+#gameBackground:-moz-full-screen {
+	width: 100%;
+}
+ 
+#gameBackground:-ms-fullscreen {
+	width: 100%;
+}
+ 
+#gameBackground:fullscreen {
+	width: 100%;
 }
