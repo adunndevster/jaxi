@@ -38,13 +38,13 @@ body
 	position: absolute;
 	width:1024px;
     height:768px;
-	background-image: url("../assets/images/junkyard/background.png");
+	background-image: url("../assets/images/junkyard/background.jpg");
 }
 
 
 
 #editor {
-	position: absolute;
+	position: relative;
 	border-style: solid;
 	border-color: #443344;
 	opacity: .85;
@@ -53,10 +53,11 @@ body
 	border-bottom-width: 60px;
 	border-top-width: 50px;
 	margin-top: 20px;
-	margin-left: 560px;
+	margin-right: 20px;
 	width: 400px;
 	height: 620px;
 	z-index: 1000;
+	float:right;
 }
 
 #codeControls

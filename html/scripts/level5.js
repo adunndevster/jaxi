@@ -40,13 +40,13 @@ var level = {"elements":[{"type":"TileMidBump","x":4651,"height":160.6,"y":-2079
 var conversations = [
 	{actions: [
 		{character: "Choco", value: "//timeout", type: "js"},
-		{character: "Choco", value: "//timeout", type: "js"},
-		{character: "Choco", value: "doZoom(.7)", type: "js"},
-		{character: "Choco", value: "You're really heating up! Try getting through this challenge...", type: "speak"},
-		{character: "Choco", value: "I'm going to go explore a little bit on my own. Let's meet up in a little bit!", type: "speak"},
-		{character: "Choco", value: "chocobot.run(1000);", type: "js"},
+		//{character: "Choco", value: "//timeout", type: "js"},
+		//{character: "Choco", value: "doZoom(.7)", type: "js"},
+		//{character: "Choco", value: "You're really heating up! Try getting through this challenge...", type: "speak"},
+		//{character: "Choco", value: "I'm going to go explore a little bit on my own. Let's meet up in a little bit!", type: "speak"},
+		//{character: "Choco", value: "chocobot.run(1000);", type: "js"},
 		{character: "Choco", value: "chocobot.remove();", type: "js"},
-		{character: "Choco", value: "doZoom(.28)", type: "js"},
+		{character: "Choco", value: "doZoom(.09)", type: "js"},
 		{character: "Choco", value: "levelCamera = false;", type: "js"}
 
 		/*

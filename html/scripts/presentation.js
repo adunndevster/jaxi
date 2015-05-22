@@ -254,12 +254,16 @@ function hideHandbook()
 }
 
 // Find the right method, call on correct element
+//http://stackoverflow.com/questions/4938346/canvas-width-and-height-in-html5
+//https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Using_full_screen_mode
+//https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/
 function launchIntoFullscreen() {
 
 	element = document.getElementById('gameFrame');
 
 	if (!element.fullscreenElement &&    // alternative standard method
 	  !element.mozFullScreenElement && !element.webkitFullscreenElement && !element.msFullscreenElement ) {  // current working methods
+	
 		if (element.requestFullscreen) {
 		  	element.requestFullscreen();
 		} else if (element.msRequestFullscreen) {
@@ -269,7 +273,10 @@ function launchIntoFullscreen() {
 		} else if (element.webkitRequestFullscreen) {
 		  	element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
 		}
-	} else {
+	} /*else {
+
+		console.log("bbbbbbbbbbbbb");
+
 		if (element.exitFullscreen) {
 		  	element.exitFullscreen();
 		} else if (element.msExitFullscreen) {
@@ -279,25 +286,51 @@ function launchIntoFullscreen() {
 		} else if (element.webkitExitFullscreen) {
 		  	element.webkitExitFullscreen();
 		}
-	}
-
-	canvas.width = window.innerWidth;
-	//canvas.height = window.innerHeight;
-
-	canvas.style.width  = '100%';
-	//canvas.style.height = '100%';	
-
-	var gameBackground = document.getElementById("gameBackground");
-	gameBackground.width =  window.innerWidth;
-	gameBackground.height = window.innerHeight;
-	gameBackground.style.width  = '100%';
+	}*/
 
 }
 
+function checkFullScreenStatus(status){
+	
+	var gameBackground = document.getElementById("gameBackground");
+	var gameFrame = document.getElementById("gameFrame");
 
+	if(status){
+		//canvas.height = window.innerHeight;
+		//canvas.style.height = '100%';	
+		canvas.width = window.innerWidth;
+		canvas.style.width  = '100%';
+		gameFrame.style.marginTop  = '0';
 
-document.getElementById('gameFrame').addEventListener("fullscreenchange", 
-	function() { 
-		console.log("cambio!!"); 
+		gameBackground.width =  window.innerWidth;
+		gameBackground.height = window.innerHeight;
+		gameBackground.style.width  = '100%';
+	}else{
+
+		canvas.width = '1024';
+		canvas.style.width  = '1024px';
+		gameFrame.style.marginTop  = '20px';
+
+		gameBackground.width = '1024px';
+		gameBackground.height = '768px';
+		gameBackground.style.width  = '1024px';
 	}
-);
+}
+
+
+//Full screen events, it is necessary to add all browser options
+document.addEventListener("fullscreenchange", function () {
+    checkFullScreenStatus(document.fullscreen);
+}, false);
+ 
+document.addEventListener("mozfullscreenchange", function () {
+	checkFullScreenStatus(document.mozFullScreen);
+}, false);
+
+document.addEventListener("webkitfullscreenchange", function () {
+    checkFullScreenStatus(document.webkitIsFullScreen);
+}, false);
+
+document.addEventListener("msfullscreenchange", function () {
+	checkFullScreenStatus(document.msFullscreenElement);
+}, false);
