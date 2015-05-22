@@ -273,6 +273,7 @@ function launchIntoFullscreen() {
 		} else if (element.webkitRequestFullscreen) {
 		  	element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
 		}
+
 	} /*else {
 
 		console.log("bbbbbbbbbbbbb");
