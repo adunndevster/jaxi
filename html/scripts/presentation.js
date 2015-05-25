@@ -96,10 +96,10 @@ function showNextConversation(){
 
 	if(currentConversationAction < conversation.actions.length)
 	{
-		console.log("showNextConversation #1");
+		//console.log("showNextConversation #1");
 		doNextConversationElement();
 	} else {
-		console.log("showNextConversation #2");
+		//console.log("showNextConversation #2");
 		fadeCodePanelIn();
 		hideSpeechBubble();
 	}
@@ -217,6 +217,8 @@ function doZoom(amount, speed)
 	speed = typeof speed !== 'undefined' ? speed : 600;
 	createjs.Tween.get(window).to({zoom:amount}, speed, createjs.Ease.quadInOut);
 
+	console.log("position");
+
 	/*
 	if(typeof levelCamera === 'undefined'){
 		levelCamera = false;
@@ -253,10 +255,12 @@ function hideHandbook()
 	$('#handbook').animate({opacity:'0'}, 250);
 }
 
-// Find the right method, call on correct element
-//http://stackoverflow.com/questions/4938346/canvas-width-and-height-in-html5
-//https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Using_full_screen_mode
-//https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/
+/*
+Find the right method, call on correct element
+http://stackoverflow.com/questions/4938346/canvas-width-and-height-in-html5
+https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Using_full_screen_mode
+https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/
+*/
 function launchIntoFullscreen() {
 
 	element = document.getElementById('gameFrame');
@@ -275,8 +279,6 @@ function launchIntoFullscreen() {
 		}
 
 	} /*else {
-
-		console.log("bbbbbbbbbbbbb");
 
 		if (element.exitFullscreen) {
 		  	element.exitFullscreen();

@@ -47,7 +47,7 @@ var conversations = [
 		{character: "Choco", value: "Whew! Those teleporters do a number on the circuits!", type: "speak"},
 		{character: "Choco", value: "Okay, next lesson. You can run or jump backwards by putting a negative number in your function.:<br><br><span class='codeExample'>jaxi.run(-600);</span>", type: "speak"},
 		{character: "Choco", value: "hideSpeechBubble();", type: "js"},
-		{character: "Choco", value: "doZoom(.28)", type: "js"},
+		{character: "Choco", value: "doZoom(.1)", type: "js"},
 		{character: "Choco", value: "levelCamera = false;", type: "js"}
 
 	]  }

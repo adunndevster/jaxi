@@ -27,31 +27,34 @@
 
 <body onload="Main();" >
 
-<div class="gameFrame">
+<div class="gameFrame" id="gameFrame">
 
 	<!--video id="bgbVideo" class="videoContainer" width="1024" height="768" autoplay loop>
 		<source src="assets/videos/Pink_FacilityOutside.ogv" type="video/ogg" />
 		<source src="assets/videos/Pink_FacilityOutside.mp4" type="video/mp4" />
 	</video-->
-	<div id="gameBackground" width="1024" height="768"></div>
+	<div id="gameBackground"></div>
 	<canvas id="mainStage" class="gameContainer" width="1024" height="768" ></canvas>
 	<canvas id="debugCanvas" class="gameContainer" width="1024" height="768" ></canvas>
 	<div id="debug" style="position: absolute; top: 840px;">Show/Hide Debug</div>
 
 	<div id="loader"></div>
 
-	<div id="editor"></div>
-	<script src="scripts/ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-	<script>
-		var editor = ace.edit("editor");
-		editor.setTheme("ace/theme/clouds");
-		editor.getSession().setMode("ace/mode/javascript");
-		editor.focus();
-	</script>
-	<div id="codeControls">
-		<img src="assets/images/mcPinkIconWhite.png">
-		<button class="css3button" onclick="runCode()"><img src="assets/images/mcPlayIcon.png"> <span style="position: relative; top: -5px;">Run Code</span></button>
-		<button id="btnHandbook" style="opacity: 0;" class="css3button" onclick="showHandbook()"><img src="assets/images/handbookIcon.png"> <span style="position: relative; top: -5px;">Handbook</span></button>
+	<div id="editorContainer">
+		<div id="editor"></div>
+		<script src="scripts/ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var editor = ace.edit("editor");
+			editor.setTheme("ace/theme/clouds");
+			editor.getSession().setMode("ace/mode/javascript");
+			editor.focus();
+		</script>
+		<div id="codeControls">
+			<img src="assets/images/mcPinkIconWhite.png">
+			<button class="css3button" onclick="runCode()"><img src="assets/images/mcPlayIcon.png"> <span style="position: relative; top: -5px;">Run Code</span></button>
+			<button id="btnHandbook" class="css3button" onclick="showHandbook()"><img src="assets/images/handbookIcon.png"> <span style="position: relative; top: -5px;">Handbook</span></button>
+			<button id="btnChopperBot" class="css3button" onclick="toggleChopperBot()"><img src="assets/images/handbookIcon.png"> <span style="position: relative; top: -5px;">Chopper</span></button>
+		</div>
 	</div>
 
 	<div id="msgBox" class="msgBox">
@@ -98,9 +101,7 @@
 
 </div>
 
-
-
-
+<button class="" onclick="launchIntoFullscreen();">Full Screen</button>
 
 <script>
 	SC.initialize({
