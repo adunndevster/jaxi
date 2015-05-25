@@ -58,7 +58,7 @@ var conversations = [
 		{character: "Choco", value: "chocobot.remove();", type: "js"},
 		{character: "Choco", value: "givePinkHandbook();", type: "js"},
 
-		{character: "Choco", value: "doZoom(.28)", type: "js"},
+		{character: "Choco", value: "doZoom(.1)", type: "js"},
 		{character: "Choco", value: "levelCamera = false;", type: "js"}
 
 	]  }
