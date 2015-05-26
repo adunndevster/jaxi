@@ -578,8 +578,9 @@ var box2d = (function() {
 				gjaxi.currentAnimation != "die" &&
 				gjaxi.currentAnimation != "teleport")
 			{
+
 				gjaxi.gotoAndStop("idol");
-				showCodePanel();
+				//showCodePanel();
 
 			}
 

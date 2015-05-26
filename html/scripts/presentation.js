@@ -38,6 +38,9 @@ function hideMessage(callBack)
 //shrinks the code panel
 function hideCodePanel()
 {
+
+	//console.log("--hideCodePanel--");
+
 	$('#editor').stop(true);
 	if($('#editor').height() != 40)
 	{
@@ -49,8 +52,11 @@ function hideCodePanel()
 //shows the code panel
 function showCodePanel()
 {
+
+	//console.log("--showCodePanel--: " + $('#editor').height());
+
 	//$('#editor').clearQueue();
-	if($('#editor').height() <= 50)
+	if($('#editor').height() < 700)
 	{
 		$('#editor').delay(700).animate({height:'620'});
 	}
@@ -59,18 +65,28 @@ function showCodePanel()
 
 function fadeCodePanelOut()
 {
+
+	console.log("--fadeCodePanelOut--");
+
 	$('#codeControls').stop();
 	$('#editor').stop();
 	$('#codeControls').animate({opacity:'0'}, {duration:250, queue:false});
 	$('#editor').animate({opacity:'0'}, {duration:250, queue:false});
+
+	document.getElementById('editorContainer').style.zIndex = "-1";
 }
 
 function fadeCodePanelIn()
 {
+
+	console.log("--fadeCodePanelIn--");
+
 	$('#codeControls').stop();
 	$('#editor').stop();
 	$('#codeControls').animate({opacity:'1'}, {duration:250, queue:false});
 	$('#editor').animate({opacity:'.85'}, {duration:250, queue:false});
+
+	document.getElementById('editorContainer').style.zIndex = "1000";
 }
 
 
@@ -99,7 +115,7 @@ function showNextConversation(){
 		//console.log("showNextConversation #1");
 		doNextConversationElement();
 	} else {
-		//console.log("showNextConversation #2");
+		console.log("showNextConversation #2");
 		fadeCodePanelIn();
 		hideSpeechBubble();
 	}

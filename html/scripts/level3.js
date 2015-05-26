@@ -50,7 +50,7 @@ var conversations = [
 		{character: "Choco", value: "chocobot.run(600);", type: "js"},
 		{character: "Choco", value: "chocobot.jump(250);", type: "js"},
 		{character: "Choco", value: "chocobot.remove();", type: "js"},
-		{character: "Choco", value: "doZoom(.16)", type: "js"},jaxi.run();
+		{character: "Choco", value: "doZoom(.16)", type: "js"},
 		{character: "Choco", value: "levelCamera = false;", type: "js"}
 
 	]  }

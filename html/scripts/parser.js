@@ -70,6 +70,8 @@ Parser.prototype.next = function(){
 				break;
 			}
 		}
+	}else{
+		showCodePanel();
 	}
 }
 
@@ -92,6 +94,7 @@ Parser.prototype.wait = function(statement, type, codeBlock){
 	if (gjaxi.currentAnimation != "idol") {
 		window.setTimeout(function(){ that.wait(statement, type, codeBlock) }, WAIT_TIME_BETWEEN_STEPS);
 	}else{
+
 		this.evaluate(statement, type, codeBlock);		
 	}
 }
@@ -106,7 +109,7 @@ Parser.prototype.getExpressionStatement = function(code){
 	
 	var object 		= code.callee.object.name;
 	var property 	= code.callee.property.name;
-	var arguments = this.getArguments(code.arguments);
+	var arguments 	= this.getArguments(code.arguments);
 	var callee 		= object + '.' + property;
 	var statement 	= callee + '(' + arguments + ')' + ';';
 	

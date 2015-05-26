@@ -28,15 +28,15 @@ var _synch = new SynchronousController(undefined);
 var jaxi = (function () {
 
     function test1(){ 
-		console.log("jaxi::test1");
+		//console.log("jaxi::test1");
 	}
 	
     function test2(){ 
-		console.log("jaxi::test2");		
+		//console.log("jaxi::test2");		
 	}	
 
     function jump(power){ 
-		console.log("jaxi::jump");
+		//console.log("jaxi::jump");
 		
 		power = typeof power !== 'undefined' ? power : 400;
 		var degrees = (power < 0) ? 80 : -80;
@@ -48,7 +48,7 @@ var jaxi = (function () {
     };
 
     function run(distance){
-		console.log("jaxi::run -> " + distance);
+		//console.log("jaxi::run -> " + distance);
 		
 		distance = typeof distance !== 'undefined' ? distance : 200;
 		var degrees = 0; 
@@ -65,7 +65,7 @@ var jaxi = (function () {
     //function encounters(id){
 	function encounters(type){
 		
-		console.log("jaxi::encounters: " + type);
+		//console.log("jaxi::encounters: " + type);
 		
 		//var asset = getAssetById(id);
 		var obstacles = getObstaclesByType(type);
@@ -106,7 +106,7 @@ var jaxi = (function () {
     
     function pickUp(){
 		
-		console.log("jaxi::pickUp");
+		//console.log("jaxi::pickUp");
 		
 		gjaxi.gotoAndPlay("pickup");
 		hideCodePanel();
@@ -114,7 +114,7 @@ var jaxi = (function () {
 
     function say(words){ 
 		
-		console.log("jaxi::say");
+		//console.log("jaxi::say");
 		
 		words = properties.words;
 		speak(gjaxi, words);
@@ -124,7 +124,7 @@ var jaxi = (function () {
 
     function die(){ 
 		
-		console.log("jaxi::die");
+		//console.log("jaxi::die");
 		
 		gjaxi.gotoAndPlay("die");
 		gjaxi.addEventListener("animationend", function ()
