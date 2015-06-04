@@ -548,6 +548,309 @@ var box2d = (function() {
 		bodies.push(piece);
 	}
 
+	var createFence = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}	
+
+	var createFactory = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createGarbageMix1 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createGarbageMix2 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createGarbageStorage = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createMagnetCrane = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createRock1 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createRock2 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createRock3 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createScrapCrane = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createGarbageMountain1 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createGarbageMountain2 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}			
+
+
+	//--------------------------------------------------------------------------
+
 	// remove actor and it's skin object
 	var removeActor = function(actor) {
 		gameSprite.removeChild(actor.skin);
@@ -724,6 +1027,18 @@ var box2d = (function() {
 		createTesting: createTesting,
 		createRamp: createRamp,
 		createRamp2: createRamp2,
+		createFence: createFence,
+		createFactory: createFactory,
+		createGarbageMix1: createGarbageMix1,
+		createGarbageMix2: createGarbageMix2,
+		createGarbageStorage: createGarbageStorage,
+		createMagnetCrane: createMagnetCrane,
+		createRock1: createRock1,
+		createRock2: createRock2,
+		createRock3: createRock3,
+		createScrapCrane: createScrapCrane,
+		createGarbageMountain1: createGarbageMountain1,
+		createGarbageMountain2: createGarbageMountain2,
 		pauseResume: pauseResume
 	}
 })();
@@ -974,6 +1289,21 @@ function handleComplete(event) {
 				piece.y = level.elements[i].y;
 				parallaxBGSprite.addChild(piece);
 				break;
+
+			case "ParallaxFactory":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				var matrix = new createjs.Matrix2D();
+				matrix.scale(1,1);
+				g.beginBitmapFill(result, "repeat-x", matrix);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				parallaxBGSprite.addChild(piece);
+				break;
+
 			case "ParallaxFG":
 				var numGraphics = 5;
 
@@ -1158,6 +1488,213 @@ function handleComplete(event) {
 				//setup the level
 				box2d.createRamp2(piece);
 				break;
+
+			case "Fence":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createFence(piece);
+				break;
+
+			case "Factory":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createFactory(piece);
+				break;				
+
+			case "GarbageMix1":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createGarbageMix1(piece);
+				break;				
+
+			case "GarbageMix2":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createGarbageMix2(piece);
+				break;				
+
+			case "GarbageStorage":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createGarbageStorage(piece);
+				break;				
+
+			case "MagnetCrane":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createMagnetCrane(piece);
+				break;				
+
+			case "Rock1":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createRock1(piece);
+				break;				
+
+			case "Rock2":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createRock2(piece);
+				break;				
+
+			case "Rock3":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createRock3(piece);
+				break;				
+
+			case "ScrapCrane":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createScrapCrane(piece);
+				break;				
+
+			case "GarbageMountain1":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createGarbageMountain1(piece);
+				break;				
+
+			case "GarbageMountain2":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createGarbageMountain2(piece);
+				break;				
+
+
+
 			default: //for general game art
 				var piece = new createjs.Shape();
 				var g = piece.graphics;
