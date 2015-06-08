@@ -89,12 +89,6 @@ var jaxi = (function () {
 					flag = true;
 				}
 			}
-			
-			console.log("flag: " + flag);
-			
-			//var distance = asset.x - gjaxi.x;
-			
-			//console.log("distance: " + distance);
 					
 			return flag;				
 		}else{
@@ -221,6 +215,8 @@ function runCode()
     if(CURRENT_LANGUAGE === "JAVASCRIPT"){         
         try
         {
+
+            console.log(window.location.href);
 
 			var code = parser.parseFromJavascript(commandString);
 			

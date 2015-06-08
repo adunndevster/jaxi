@@ -71,7 +71,26 @@ Parser.prototype.next = function(){
 			}
 		}
 	}else{
-		showCodePanel();
+		this.waitToFinish();
+	}
+}
+
+Parser.prototype.waitToFinish = function(){
+
+	var that = this;
+
+	if (gjaxi.currentAnimation != "idol") {
+		window.setTimeout(function(){ 
+			that.waitToFinish() 
+		}, WAIT_TIME_BETWEEN_STEPS);
+	}else{
+		console.log("--> Terminó última animación");
+
+		if(oneShotLevel){
+			window.location.href = window.location.href;
+		}else{
+			showCodePanel();	
+		}
 	}
 }
 

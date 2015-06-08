@@ -233,7 +233,7 @@ function doZoom(amount, speed)
 	speed = typeof speed !== 'undefined' ? speed : 600;
 	createjs.Tween.get(window).to({zoom:amount}, speed, createjs.Ease.quadInOut);
 
-	console.log("position: " + gameSprite.width + " + " + gameSprite.height);
+	//console.log("position: " + gameSprite.width + " + " + gameSprite.height);
 
 	/*
 	if(typeof levelCamera === 'undefined'){

@@ -241,6 +241,9 @@ var box2d = (function() {
 
 			if(fixtureB.GetBody().GetUserData().skin.isTeleportor && (fixtureA.GetBody().GetUserData().skin == gjaxi))
 			{
+
+				//console.log("--> Tocó teleport");
+
 				gjaxi.gotoAndPlay("teleport");
 				gjaxi.addEventListener("animationend", function()
 				{
@@ -881,7 +884,7 @@ var box2d = (function() {
 				gjaxi.currentAnimation != "die" &&
 				gjaxi.currentAnimation != "teleport")
 			{
-
+				//console.log("terminó!!!!");
 				gjaxi.gotoAndStop("idol");
 				//showCodePanel();
 
@@ -1042,6 +1045,8 @@ var box2d = (function() {
 		pauseResume: pauseResume
 	}
 })();
+
+
 
 function handleProgress(event)
 {
@@ -1291,16 +1296,31 @@ function handleComplete(event) {
 				break;
 
 			case "ParallaxFactory":
+
+
+
+
 				var piece = new createjs.Shape();
 				var g = piece.graphics;
 				var matrix = new createjs.Matrix2D();
-				matrix.scale(1,1);
-				g.beginBitmapFill(result, "repeat-x", matrix);
-				piece.width = level.elements[i].width;
-				piece.height = level.elements[i].height;
+				matrix.scale(1.5,1.5);
+				g.beginBitmapFill(result, "no-repeat", matrix);
+
+				
+
+				piece.width = 2400;
+				piece.height = 2000;
+				piece.scaleX = piece.scaleY = 0.45;
+
+
+
+				//console.log(level.elements[i]);
+				//console.log("piece: " + piece.width + " + " + piece.height);
+				//console.log("gameSprite: " + gameSprite.width + " + " + gameSprite.height);
+
 				g.drawRect(0, 0, piece.width, piece.height);
-				piece.x = level.elements[i].x;
-				piece.y = level.elements[i].y;
+				piece.x = 320;
+				piece.y = 90;
 				parallaxBGSprite.addChild(piece);
 				break;
 
