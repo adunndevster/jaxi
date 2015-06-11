@@ -33,11 +33,11 @@
 		this.initialize(spritesheet);
 	}
 	
-	Obstacle.prototype = new createjs.BitmapAnimation();
-	Obstacle.prototype.BitmapAnimation_initialize = Obstacle.prototype.initialize;
+	Obstacle.prototype = new createjs.Sprite();
+	Obstacle.prototype.Sprite_initialize = Obstacle.prototype.initialize;
 	Obstacle.prototype.initialize = function(spritesheet) {
 				
-		this.BitmapAnimation_initialize(spritesheet);
+		this.Sprite_initialize(spritesheet);
 		
 		this.snapToPixel = true;
 		this.type = spritesheet.type;
@@ -95,8 +95,8 @@
 		this.initialize();
 	}
 	
-	ObstacleTire.prototype = new createjs.BitmapAnimation();
-	ObstacleTire.prototype.BitmapAnimation_initialize = ObstacleTire.prototype.initialize;
+	ObstacleTire.prototype = new createjs.Sprite();
+	ObstacleTire.prototype.Sprite_initialize = ObstacleTire.prototype.initialize;
 	ObstacleTire.prototype.initialize = function() {
 		
 		var data = {
@@ -109,7 +109,7 @@
 		};
 		
 		var spritesheet = new createjs.SpriteSheet(data);
-		this.BitmapAnimation_initialize(spritesheet);
+		this.Sprite_initialize(spritesheet);
 		this.gotoAndPlay("idle");
 	}
 	* */
