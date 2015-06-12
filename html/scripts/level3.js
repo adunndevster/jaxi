@@ -59,7 +59,7 @@ var conversations = [
 		{character: "Choco", value: "//timeout", type: "js"},
 		{character: "Choco", value: "//timeout", type: "js"},
 		{character: "Choco", value: "//timeout", type: "js"},
-		{character: "Choco", value: "doZoom(.7)", type: "js"},
+		{character: "Choco", value: "doZoom(.6)", type: "js"},
 		{character: "Choco", value: "Whew! Those teleporters do a number on the circuits!", type: "speak"},
 		{character: "Choco", value: "Okay, next lesson. You can run or jump backwards by putting a negative number in your function.:<br><br><span class='codeExample'>jaxi.run(-600);</span>", type: "speak"},
 		{character: "Choco", value: "hideSpeechBubble();", type: "js"},
@@ -71,6 +71,6 @@ var conversations = [
 
 	]  }
 ]
-var levelZoom = .28;
+var levelZoom = .29;
 var levelCamera = false;
 

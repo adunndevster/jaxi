@@ -38,7 +38,6 @@ function hideMessage(callBack)
 //shrinks the code panel
 function hideCodePanel()
 {
-
 	//console.log("--hideCodePanel--");
 
 	$('#editor').stop(true);
@@ -52,6 +51,8 @@ function hideCodePanel()
 //shows the code panel
 function showCodePanel()
 {
+	
+
 
 	//console.log("--showCodePanel--: " + $('#editor').height());
 

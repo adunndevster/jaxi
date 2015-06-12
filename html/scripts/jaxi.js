@@ -29,6 +29,7 @@ var jaxi = (function () {
 
     function test1(){ 
 		//console.log("jaxi::test1");
+
 	}
 	
     function test2(){ 
@@ -37,6 +38,7 @@ var jaxi = (function () {
 
     function jump(power){ 
 		//console.log("jaxi::jump");
+        
 		
 		power = typeof power !== 'undefined' ? power : 400;
 		var degrees = (power < 0) ? 80 : -80;
@@ -48,6 +50,7 @@ var jaxi = (function () {
     };
 
     function run(distance){
+        
 		//console.log("jaxi::run -> " + distance);
 		
 		distance = typeof distance !== 'undefined' ? distance : 200;
@@ -208,6 +211,9 @@ jaxi.isAlive = true;
 
 function runCode()
 {
+
+    soundManager.backgroundSoundPlay();
+    
     //var commandString = document.getElementById('txtCommand').innerHTML;
     var commandString = editor.getValue();
     //commandString = commandString.replace(/<br>/g, "");

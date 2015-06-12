@@ -93,4 +93,4 @@ var conversations = [
 
 
 
-var levelZoom = .4;
+var levelZoom = .5;
