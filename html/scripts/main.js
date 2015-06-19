@@ -102,7 +102,7 @@ function Main()
 	 // Set up looping
 	ss.getAnimation("idol").next = "idol";
 	ss.getAnimation("run").next = "run";
-	ss.getAnimation("jump").next = "jump"
+	ss.getAnimation("jump").next = "run"
 	ss.getAnimation("pickup").next = "idol";
 	ss.getAnimation("wakeup").next = "idol";
 	ss.getAnimation("teleport").next = "";
@@ -285,7 +285,7 @@ var box2d = (function() {
 				b2jaxi.SetAwake(false);
 			}
 
-			if(fixtureB.GetBody().GetUserData().skin.isTrigger)
+			if(fixtureB.GetBody().GetUserData().skin.isTrigger && (fixtureA.GetBody().GetUserData().skin == gjaxi))
 			{
 				eval(fixtureB.GetBody().GetUserData().skin.js);
 				fixtureB.GetBody().GetUserData().skin.isTrigger = false;
@@ -1192,14 +1192,14 @@ function handleComplete(event) {
 			case "gjaxi":
 				gjaxi.snapToPixel = true;
 
-				if(urlVars['cp'] == undefined)
-				{
+				//if(urlVars['cp'] == undefined)
+				//{
 					gjaxi.x = level.elements[i].x;
 					gjaxi.y = level.elements[i].y;
-				}  else {
-					gjaxi.x = checkPoints[urlVars['cp']].x;
-					gjaxi.y = checkPoints[urlVars['cp']].y;
-				}
+				//}  else {
+				//	gjaxi.x = checkPoints[urlVars['cp']].x;
+				//	gjaxi.y = checkPoints[urlVars['cp']].y;
+				//}
 
 				gjaxi.regX = (gjaxi.getBounds().width/2) - 80;
 				gjaxi.regY = (gjaxi.getBounds().height/2) + 50;
