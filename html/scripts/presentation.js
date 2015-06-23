@@ -51,11 +51,6 @@ function hideCodePanel()
 //shows the code panel
 function showCodePanel()
 {
-	
-
-
-	//console.log("--showCodePanel--: " + $('#editor').height());
-
 	//$('#editor').clearQueue();
 	if($('#editor').height() < 700)
 	{

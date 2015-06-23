@@ -118,15 +118,6 @@ function Main()
 
 	assets = [];
 
-	/*
-	loader = new createjs.LoadQueue(false);
-	loader.installPlugin(createjs.Sound);
-	loader.onFileLoad = handleFileLoad;
-	loader.onProgress = handleFileLoad;
-	loader.onComplete = handleComplete;
-	loader.loadManifest(manifest);      //manifest is defined in the level.js file
-	*/
-
 	queue = new createjs.LoadQueue(true);
 	queue.on("fileload", handleFileLoad, this);
 	queue.on("complete", handleComplete, this);
@@ -279,7 +270,8 @@ var box2d = (function() {
 				gjaxi.gotoAndPlay("teleport");
 				gjaxi.addEventListener("animationend", function()
 				{
-					window.location = nextLevelUrl;
+					//window.location = nextLevelUrl;
+					$( "#gameFrame" ).load( nextLevelUrl );
 				}) ;
 
 				b2jaxi.SetAwake(false);
