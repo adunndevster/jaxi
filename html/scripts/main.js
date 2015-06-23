@@ -14,6 +14,7 @@ includeJS('scripts/game/obstacle.js');
 includeJS('scripts/game/settings.js');
 includeJS('scripts/jaxi.js');
 includeJS('scripts/choco.js');
+includeJS('scripts/teddybot.js');
 
 
 
@@ -102,7 +103,7 @@ function Main()
 	 // Set up looping
 	ss.getAnimation("idol").next = "idol";
 	ss.getAnimation("run").next = "run";
-	ss.getAnimation("jump").next = "jump"
+	ss.getAnimation("jump").next = "run"
 	ss.getAnimation("pickup").next = "idol";
 	ss.getAnimation("wakeup").next = "idol";
 	ss.getAnimation("teleport").next = "";
@@ -277,7 +278,7 @@ var box2d = (function() {
 				b2jaxi.SetAwake(false);
 			}
 
-			if(fixtureB.GetBody().GetUserData().skin.isTrigger)
+			if(fixtureB.GetBody().GetUserData().skin.isTrigger && (fixtureA.GetBody().GetUserData().skin == gjaxi))
 			{
 				eval(fixtureB.GetBody().GetUserData().skin.js);
 				fixtureB.GetBody().GetUserData().skin.isTrigger = false;
@@ -1184,14 +1185,14 @@ function handleComplete(event) {
 			case "gjaxi":
 				gjaxi.snapToPixel = true;
 
-				if(urlVars['cp'] == undefined)
-				{
+				//if(urlVars['cp'] == undefined)
+				//{
 					gjaxi.x = level.elements[i].x;
 					gjaxi.y = level.elements[i].y;
-				}  else {
-					gjaxi.x = checkPoints[urlVars['cp']].x;
-					gjaxi.y = checkPoints[urlVars['cp']].y;
-				}
+				//}  else {
+				//	gjaxi.x = checkPoints[urlVars['cp']].x;
+				//	gjaxi.y = checkPoints[urlVars['cp']].y;
+				//}
 
 				gjaxi.regX = (gjaxi.getBounds().width/2) - 80;
 				gjaxi.regY = (gjaxi.getBounds().height/2) + 50;
@@ -1503,6 +1504,38 @@ function handleComplete(event) {
 				Choco.regY = (piece.height / 2);
 				gameSprite.addChild(Choco);
 				box2d.createChocoBot(Choco);
+				break;
+			case "TeddyBot":
+				
+				TeddyBot = new createjs.Shape();
+				var g = TeddyBot.graphics;
+				g.beginBitmapFill(result);
+				TeddyBot.width = level.elements[i].width;
+				TeddyBot.height = level.elements[i].height;
+				g.drawRect(0, 0, TeddyBot.width, TeddyBot.height);
+				TeddyBot.x = level.elements[i].x;
+				TeddyBot.y = level.elements[i].y;
+				TeddyBot.rotation = level.elements[i].rotation;
+				//TeddyBot.regX = piece.width / 2;
+				//TeddyBot.regY = (piece.height / 2) - 20;
+				gameSprite.addChild(TeddyBot);
+				
+				break;
+			case "BearDoor":
+				
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.rotation = level.elements[i].rotation;
+				//piece.regX = piece.width / 2;
+				//piece.regY = (piece.height / 2) - 20;
+				gameSprite.addChild(piece);
+				
 				break;
 			case "Ramp":
 				var piece = new createjs.Shape();
@@ -1841,6 +1874,7 @@ function createAssetsPhysicsBorder(asset){
 
 function getCharacterPosition(skin)
 {
+
 	skin = eval(skin);
 	var rect = new Object();
 

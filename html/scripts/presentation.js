@@ -253,6 +253,15 @@ function doZoom(amount, speed)
 	
 }
 
+function doPan(x, y, speed)
+{
+	speed = typeof speed !== 'undefined' ? speed : 600;
+	
+	isCameraOn = false;
+	
+	createjs.Tween.get(gameSprite).to({x:x, y:y}, speed, createjs.Ease.quadInOut);
+}
+
 function showHandbook()
 {
 	document.getElementById('handbook').style.zIndex = 1010;
