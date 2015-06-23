@@ -14,6 +14,7 @@ includeJS('scripts/game/obstacle.js');
 includeJS('scripts/game/settings.js');
 includeJS('scripts/jaxi.js');
 includeJS('scripts/choco.js');
+includeJS('scripts/teddybot.js');
 
 
 
@@ -1512,6 +1513,38 @@ function handleComplete(event) {
 				gameSprite.addChild(Choco);
 				box2d.createChocoBot(Choco);
 				break;
+			case "TeddyBot":
+				
+				TeddyBot = new createjs.Shape();
+				var g = TeddyBot.graphics;
+				g.beginBitmapFill(result);
+				TeddyBot.width = level.elements[i].width;
+				TeddyBot.height = level.elements[i].height;
+				g.drawRect(0, 0, TeddyBot.width, TeddyBot.height);
+				TeddyBot.x = level.elements[i].x;
+				TeddyBot.y = level.elements[i].y;
+				TeddyBot.rotation = level.elements[i].rotation;
+				//TeddyBot.regX = piece.width / 2;
+				//TeddyBot.regY = (piece.height / 2) - 20;
+				gameSprite.addChild(TeddyBot);
+				
+				break;
+			case "BearDoor":
+				
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.rotation = level.elements[i].rotation;
+				//piece.regX = piece.width / 2;
+				//piece.regY = (piece.height / 2) - 20;
+				gameSprite.addChild(piece);
+				
+				break;
 			case "Ramp":
 				var piece = new createjs.Shape();
 				var g = piece.graphics;
@@ -1849,6 +1882,7 @@ function createAssetsPhysicsBorder(asset){
 
 function getCharacterPosition(skin)
 {
+
 	skin = eval(skin);
 	var rect = new Object();
 
