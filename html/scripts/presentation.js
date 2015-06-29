@@ -266,6 +266,7 @@ function showHandbook()
 {
 	document.getElementById('handbook').style.zIndex = 1010;
 	$('#handbook').animate({opacity:'1'}, 250);
+	$('#editorContainer').css("display","none");
 
 
 }
@@ -274,6 +275,7 @@ function hideHandbook()
 {
 	document.getElementById('handbook').style.zIndex = -1010;
 	$('#handbook').animate({opacity:'0'}, 250);
+	$('#editorContainer').css("display","initial");
 }
 
 /*

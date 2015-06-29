@@ -2419,7 +2419,9 @@ function handleComplete(event) {
 	$('#handbookContent').load('assets/html/handbook.html #content', function() {
 		//page was loaded.
 	});
-
+	
+	 $( "#handbook" ).draggable(); 
+	 $( "#editorContainer" ).draggable(); 
 	gameSprite.scaleX = zoom;
 	gameSprite.scaleY = zoom;
 
@@ -2460,6 +2462,43 @@ function handleComplete(event) {
 	*/
 	
 	tooltip = Tooltip.getInstance();
+
+	$("#img_handbook").hover(function(){
+			$('#img_handbook').attr('src','assets/images/funtions_sel.png');
+			if($( "#img_handbook" ).hasClass( "active" )){
+				$('#img_handbook').attr('src','assets/images/funtions.png');
+			}
+		}, function(){
+			$('#img_handbook').attr('src','assets/images/funtions.png');
+			if($( "#img_handbook" ).hasClass( "active" )){
+				$('#img_handbook').attr('src','assets/images/funtions_sel.png');
+			}
+	});
+
+	$("#img_guide").hover(function(){
+			$('#img_guide').attr('src','assets/images/guide_sel.png');
+			if($( "#img_guide" ).hasClass( "active" )){
+				$('#img_guide').attr('src','assets/images/guide.png');
+			}
+		}, function(){
+			$('#img_guide').attr('src','assets/images/guide.png');
+			if($( "#img_guide" ).hasClass( "active" )){
+				$('#img_guide').attr('src','assets/images/guide_sel.png');
+			}
+	});
+	
+	$("#img_samples").hover(function(){
+			$('#img_samples').attr('src','assets/images/samples_sel.png');
+			if($( "#img_samples" ).hasClass( "active" )){
+				$('#img_samples').attr('src','assets/images/samples.png');
+			}
+		}, function(){
+			$('#img_samples').attr('src','assets/images/samples.png');
+			if($( "#img_samples" ).hasClass( "active" )){
+				$('#img_samples').attr('src','assets/images/samples_sel.png');
+			}
+	});
+	
 
 	
 	//--------------------------------------
@@ -2523,3 +2562,43 @@ function tick(event) {
 	
 	if(typeof levelRunner !== 'undefined') levelRunner.update();
 }
+
+
+function changePanel(panel){
+	$('#handbookContent').load('assets/html/'+panel+'.html #content', function() {
+		//page was loaded.
+	});
+	
+	if(panel == 'handbook'){
+		$('#img_handbook').attr('src','assets/images/funtions_sel.png');
+		$('#img_guide').attr('src','assets/images/guide.png');
+		$('#img_samples').attr('src','assets/images/samples.png');
+		
+		$('#img_handbook').addClass('active');
+		$('#img_guide').removeClass('active'); 
+		$('#img_samples').removeClass('active'); 
+	}
+	else if(panel == 'guide'){
+		$('#img_guide').attr('src','assets/images/guide_sel.png');
+		$('#img_handbook').attr('src','assets/images/funtions.png');
+		$('#img_samples').attr('src','assets/images/samples.png');
+		
+		$('#img_guide').addClass('active');
+		$('#img_handbook').removeClass('active'); 
+		$('#img_samples').removeClass('active'); 
+	}
+	else if(panel == 'samples'){
+		$('#img_samples').attr('src','assets/images/samples_sel.png');
+		$('#img_handbook').attr('src','assets/images/funtions.png');
+		$('#img_guide').attr('src','assets/images/guide.png');
+		
+		$('#img_samples').addClass('active');   
+		$('#img_handbook').removeClass('active'); 
+		$('#img_guide').removeClass('active'); 
+	}
+	
+}
+
+
+
+
