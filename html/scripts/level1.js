@@ -16,7 +16,23 @@ var manifest = [
 	{src: "assets/images/junkyard/mcTileBlockLeft2.png", id: "TileBlockLeft2"},
 	{src: "assets/images/junkyard/mcTileBlockRight.png", id: "TileBlockRight"},
 	{src: "assets/images/junkyard/mcFence.png", id: "Fence"},
-	
+
+	{src: "assets/images/junkyard/mcJunkyardItem1.png", id: "JunkyardItem1"},
+	{src: "assets/images/junkyard/mcJunkyardItem2.png", id: "JunkyardItem2"},
+	{src: "assets/images/junkyard/mcJunkyardItem3.png", id: "JunkyardItem3"},
+	{src: "assets/images/junkyard/mcJunkyardItem4.png", id: "JunkyardItem4"},
+	{src: "assets/images/junkyard/mcJunkyardItem5.png", id: "JunkyardItem5"},
+	{src: "assets/images/junkyard/mcJunkyardItem6.png", id: "JunkyardItem6"},
+	{src: "assets/images/junkyard/mcJunkyardSplash1.png", id: "JunkyardSplash1"},
+	{src: "assets/images/junkyard/mcJunkyardSplash2.png", id: "JunkyardSplash2"},
+	{src: "assets/images/junkyard/mcJunkyardSplash3.png", id: "JunkyardSplash3"},
+	{src: "assets/images/junkyard/mcJunkyardSplash4.png", id: "JunkyardSplash4"},
+	{src: "assets/images/junkyard/mcJunkyardSplash5.png", id: "JunkyardSplash5"},
+	{src: "assets/images/junkyard/mcJunkyardSplash6.png", id: "JunkyardSplash6"},
+	{src: "assets/images/junkyard/mcJunkyardSplash7.png", id: "JunkyardSplash7"},
+	{src: "assets/images/junkyard/mcJunkyardTileFloor1.png", id: "JunkyardTileFloor1"},
+
+
 	{src: "assets/images/mcRobotJunk1.png", id: "RobotJunk1"},
 	{src: "assets/images/mcRobotJunk2.png", id: "RobotJunk2"},
 	{src: "assets/images/mcRobotJunk2.png", id: "Trigger"},

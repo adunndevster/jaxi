@@ -601,6 +601,361 @@ var box2d = (function() {
 		bodies.push(piece);
 	}	
 
+	//----------------------------------------------------------------
+
+	var createJunkyardItem1 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardItem2 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardItem3 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardItem4 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardItem5 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardItem6 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardSplash1 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardSplash2 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardSplash3 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardSplash4 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardSplash5 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardSplash6 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardSplash7 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}		
+
+	var createJunkyardTileFloor1 = function(skin) {
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.shape = new b2PolygonShape;
+
+		//points
+		var p1 = new b2Vec2((skin.width/2)/SCALE, (-skin.height/2)/SCALE);
+		var p2 = new b2Vec2((-skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		var p3 = new b2Vec2((skin.width/2)/SCALE, (skin.height/2)/SCALE);
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3]);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x)  / SCALE;
+		pieceBodyDef.position.y = (skin.y) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+	}			
+
+
+	//----------------------------------------------------------------
+
 	var createFactory = function(skin) {
 		var pieceFixture = new b2FixtureDef;
 		pieceFixture.density = 1;
@@ -1059,6 +1414,22 @@ var box2d = (function() {
 		createRamp: createRamp,
 		createRamp2: createRamp2,
 		createFence: createFence,
+
+		createJunkyardItem1: createJunkyardItem1,
+		createJunkyardItem2: createJunkyardItem2,
+		createJunkyardItem3: createJunkyardItem3,
+		createJunkyardItem4: createJunkyardItem4,
+		createJunkyardItem5: createJunkyardItem5,
+		createJunkyardItem6: createJunkyardItem6,
+		createJunkyardSplash1: createJunkyardSplash1,
+		createJunkyardSplash2: createJunkyardSplash2,
+		createJunkyardSplash3: createJunkyardSplash3,
+		createJunkyardSplash4: createJunkyardSplash4,
+		createJunkyardSplash5: createJunkyardSplash5,
+		createJunkyardSplash6: createJunkyardSplash6,
+		createJunkyardSplash7: createJunkyardSplash7,
+		createJunkyardTileFloor1: createJunkyardTileFloor1,
+
 		createFactory: createFactory,
 		createGarbageMix1: createGarbageMix1,
 		createGarbageMix2: createGarbageMix2,
@@ -1774,7 +2145,249 @@ function handleComplete(event) {
 				box2d.createGarbageMountain2(piece);
 				break;				
 
+			//----------------------------------------------------------------------------
 
+			case "JunkyardItem1":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardItem1(piece);
+				break;
+
+			case "JunkyardItem2":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardItem2(piece);
+				break;
+
+			case "JunkyardItem3":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardItem3(piece);
+				break;
+
+			case "JunkyardItem4":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardItem4(piece);
+				break;
+
+			case "JunkyardItem5":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardItem5(piece);
+				break;
+
+			case "JunkyardItem6":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardItem6(piece);
+				break;
+
+			case "JunkyardSplash1":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardSplash1(piece);
+				break;
+
+			case "JunkyardSplash2":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardSplash2(piece);
+				break;
+
+			case "JunkyardSplash3":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardSplash3(piece);
+				break;
+
+			case "JunkyardSplash4":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardSplash4(piece);
+				break;
+
+			case "JunkyardSplash5":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardSplash5(piece);
+				break;
+
+			case "JunkyardSplash6":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardSplash6(piece);
+				break;
+
+			case "JunkyardSplash7":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardSplash7(piece);
+				break;
+
+			case "JunkyardTileFloor1":
+				var piece = new createjs.Shape();
+				var g = piece.graphics;
+				g.beginBitmapFill(result);
+				piece.width = level.elements[i].width;
+				piece.height = level.elements[i].height;
+				piece.facingRight = false;
+				g.drawRect(0, 0, piece.width, piece.height);
+				piece.x = level.elements[i].x;
+				piece.y = level.elements[i].y;
+				piece.regX = piece.width / 2;
+				piece.regY = piece.height / 2;
+				gameSprite.addChild(piece);
+				//setup the level
+				box2d.createJunkyardTileFloor1(piece);
+				break;
+
+
+
+			//----------------------------------------------------------------------------
 
 			default: //for general game art
 				var piece = new createjs.Shape();
