@@ -49,7 +49,7 @@ body
 #editorContainer {
 	position:absolute;
 	margin-top: 20px;
-	right: 20%;
+	right: 23.5%;
 }
 
 	#editor {
@@ -61,7 +61,7 @@ body
 		  border-width: 0px;
 		  border-bottom-width: 0px;
 		  border-top-width: 50px;
-		  width: 435px;
+		  width: 405px;
 		  height: 565px;
 		  z-index: 1000;
 		

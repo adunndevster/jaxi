@@ -2422,13 +2422,13 @@ function handleComplete(event) {
 	
 	
 	
-	 $( "#handbook" ).draggable(
+	$( "#handbook" ).draggable(
 	 { 
 		cancel: "#handbook_content"
 	}); 
 	 $( "#editorContainer" ).draggable({ 
 	
-		 cancel: ".ace_text-input, .ace_gutter, .ace_scroller"
+		 cancel: ".ace_text-input, .ace_gutter, .ace_scroller, .ace_scrollbar"
 	}); 
 	gameSprite.scaleX = zoom;
 	gameSprite.scaleY = zoom;
