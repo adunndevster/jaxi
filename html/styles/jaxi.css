@@ -47,10 +47,9 @@ body
 }
 
 #editorContainer {
-	position:relative;
+	position:absolute;
 	margin-top: 20px;
-	margin-right: 20px;
-	float:right;
+	right: 24%;
 }
 
 	#editor {
@@ -282,6 +281,7 @@ div#handbook_content {
 	font-size: 14px;
 	font-family: Arial;
 	color: #666666;
+	display: block;
 }
 
 .funtion h4 {

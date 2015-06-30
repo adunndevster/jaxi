@@ -2421,7 +2421,10 @@ function handleComplete(event) {
 	});
 	
 	 $( "#handbook" ).draggable(); 
-	 $( "#editorContainer" ).draggable(); 
+	 $( "#editorContainer" ).draggable({ 
+	
+		 cancel: ".ace_text-input, .ace_gutter, .ace_scroller"
+	}); 
 	gameSprite.scaleX = zoom;
 	gameSprite.scaleY = zoom;
 
