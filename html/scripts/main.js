@@ -2420,7 +2420,12 @@ function handleComplete(event) {
 		//page was loaded.
 	});
 	
-	 $( "#handbook" ).draggable(); 
+	
+	
+	 $( "#handbook" ).draggable(
+	 { 
+		cancel: "#handbook_content"
+	}); 
 	 $( "#editorContainer" ).draggable({ 
 	
 		 cancel: ".ace_text-input, .ace_gutter, .ace_scroller"
