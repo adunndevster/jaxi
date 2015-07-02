@@ -43,7 +43,8 @@ function hideCodePanel()
 	$('#editor').stop(true);
 	if($('#editor').height() != 40)
 	{
-		$('#editor').animate({height:'40px'});
+		$('#editor').animate({height:'40px'}, 2000);
+		$('#editor').animate({height:'565px'}, 2000);
 	}
 
 }
