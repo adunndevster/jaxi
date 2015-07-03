@@ -309,6 +309,7 @@ div#handbook_content {
 	clear: left;
 	float: left;
 	text-align: left;
+	width: 95%;
 }
 
 #handbookControls
@@ -379,4 +380,19 @@ div#handbook_content {
  
 #gameBackground:fullscreen {
 	width: 100%;
+}
+
+@media (max-width: 1280px) {
+  
+	#editorContainer {
+	    right: 12.5%;
+	}
+}
+
+
+@media (max-width: 980px) {
+  
+	#editorContainer {
+	    right: 2.5%;
+	}
 }
