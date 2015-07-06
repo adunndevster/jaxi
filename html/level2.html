@@ -5,7 +5,7 @@
 	<script type="text/javascript" src="libs/Box2dWeb-2.1.a.3.min.js"></script>
 	<script type="text/javascript" src="scripts/level2.js"></script>
 	<script type="text/javascript" src="scripts/main.js"></script>
-	
+	<script type="text/javascript" src="scripts/jquery-ui.js"></script>
 	<script src="//connect.soundcloud.com/sdk.js"></script>
 	<script src="soundmanager2-nodebug-jsmin.js"></script>
 	<link rel="stylesheet" href="styles/jaxi.css" />
@@ -33,7 +33,7 @@
 	<div id="loader"></div>
 
 	<div id="editorContainer">
-		<div id="editor"></div>
+		<div id="editor" onclick="showCodePanel();"></div>
 		<script src="scripts/ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			var editor = ace.edit("editor");
@@ -41,11 +41,13 @@
 			editor.getSession().setMode("ace/mode/javascript");
 			editor.focus();
 		</script>
-		<div id="codeControls">
-			<img src="assets/images/mcPinkIconWhite.png">
-			<button class="css3button" onclick="runCode()"><img src="assets/images/mcPlayIcon.png"> <span style="position: relative; top: -5px;">Run Code</span></button>
-			<button id="btnHandbook" class="css3button" onclick="showHandbook()"><img src="assets/images/handbookIcon.png"> <span style="position: relative; top: -5px;">Handbook</span></button>
-			<button id="btnChopperBot" class="css3button" onclick="toggleChopperBot()"><img src="assets/images/handbookIcon.png"> <span style="position: relative; top: -5px;">Chopper</span></button>
+		<div class="codeControls">
+			<div class="codeControls_img"><img src="assets/images/mcPinkIconWhite.png"></div>
+			<div class="codeControls_buttons">
+				<button class="css3button" onclick="runCode()"><img src="assets/images/arrow.png"> <span style="position: relative; top: -3px;">Run Code</span></button>
+				<button id="btnHandbook" class="css3button" onclick="showHandbook()"><img src="assets/images/book.png"> <span style="position: relative; top: -5px;">Handbook</span></button>
+			</div>
+			<!-- <button id="btnChopperBot" class="css3button" onclick="toggleChopperBot()"><img src="assets/images/handbookIcon.png"> <span style="position: relative; top: -5px;">Chopper</span></button> -->
 		</div>
 	</div>
 
@@ -75,11 +77,45 @@
 		<div id="speechBubble"><div id="wordsBubble"></div></div>
 	</div>
 
-	<div id="handbook">
-		<div id="handbookControls">
-			<button class="css3button" onclick="hideHandbook();"><span>X</span></button>
+	<div id="handbook"> 
+		<div id="handbook_controls">
+			<div>
+				<img src="assets/images/mcPinkIconWhite.png">
+			</div>
+			<div>
+				<span>Handbook</span>
+			</div>
+			<div>
+				<img onclick="hideHandbook();" src="assets/images/close.png">
+			</div>
 		</div>
-		<div><span id="handbookContent"></span></div>
+		<div id="handbook_content">
+			<div class="handbook_content_menu">
+				<div>
+					<a onclick="changePanel('handbook');">
+						<img src="assets/images/funtions_sel.png" id="img_handbook" class="active">
+						<span class="name_opcion">Jaxi's Functions</span>
+					</a>
+				</div>
+				<div>
+					<a onclick="changePanel('guide');">
+						<img src="assets/images/guide.png"  id="img_guide">
+						<span class="name_opcion">Javascript  Guide</span>
+					</a>
+				</div>
+				<div>
+					<a onclick="changePanel('samples');" >
+						<img src="assets/images/samples.png" id="img_samples">
+						<span class="name_opcion">Samples</span>
+					</a>
+				</div>
+				
+			</div>
+			<div class="handbook_content_text">
+				<div id="handbookContent"></div>
+			</div>
+		</div>
+	
 	</div>
 
 	<div id="loadScreen">

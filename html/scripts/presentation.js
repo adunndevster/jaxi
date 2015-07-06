@@ -43,7 +43,7 @@ function hideCodePanel()
 	$('#editor').stop(true);
 	if($('#editor').height() != 40)
 	{
-		$('#editor').animate({height:'40px'});
+		$('#editor').animate({height:'40px'}, 2000);
 	}
 
 }
@@ -266,6 +266,7 @@ function showHandbook()
 {
 	document.getElementById('handbook').style.zIndex = 1010;
 	$('#handbook').animate({opacity:'1'}, 250);
+	$('#editorContainer').hide();
 
 
 }
@@ -274,6 +275,7 @@ function hideHandbook()
 {
 	document.getElementById('handbook').style.zIndex = -1010;
 	$('#handbook').animate({opacity:'0'}, 250);
+	$('#editorContainer').show();
 }
 
 /*
