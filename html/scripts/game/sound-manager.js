@@ -15,7 +15,7 @@ var SoundManager = (function (window) {
 
 		var soundPosition = getRandomInt(0, sounds.length);
 		
-		createjs.Sound.registerPlugins([createjs.WebAudioPlugin]);
+		createjs.Sound.registerPlugins([createjs.WebAudioPlugin, createjs.HTMLAudioPlugin, createjs.FlashPlugin]);
 		createjs.Sound.alternateExtensions = ["mp3"];
 		createjs.Sound.on("fileload", createjs.proxy(backgroundSoundLoad, (this)));
 		createjs.Sound.registerSound(sounds[soundPosition].path, sounds[soundPosition].id);	
