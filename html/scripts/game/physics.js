@@ -49,6 +49,17 @@ var box2d = (function() {
 
 				b2jaxi.SetAwake(false);
 			}
+			
+			//button
+			if(fixtureB.GetBody().GetUserData().skin.isButton && (fixtureA.GetBody().GetUserData().skin == gjaxi))
+			{
+
+				//console.log("--> Tocó button");
+				fixtureB.GetBody().GetUserData().skin.gotoAndStop(9);
+				fixtureB.isSensor = false;
+				eval(fixtureB.GetBody().GetUserData().skin.js);
+
+			}
 
 			if(fixtureB.GetBody().GetUserData().skin.isTrigger && (fixtureA.GetBody().GetUserData().skin == gjaxi))
 			{
@@ -70,6 +81,16 @@ var box2d = (function() {
 			if(fixtureB.IsSensor())
 			{
 				hideMessage();
+			}
+			
+			//button
+			if(fixtureB.GetBody().GetUserData().skin.isButton && (fixtureA.GetBody().GetUserData().skin == gjaxi))
+			{
+
+				//console.log("--> Tocó button");
+				fixtureB.GetBody().GetUserData().skin.gotoAndStop(0);
+				
+
 			}
 		}              
 		world.SetContactListener(contactListener);
@@ -254,6 +275,56 @@ var box2d = (function() {
 		var checkPoint = {x: skin.x, y: skin.y};
 		checkPoints.push(checkPoint);
 		piece.GetUserData().skin.checkPoint = checkPoints.length - 1;
+	}
+	
+	var createButton = function(skin) {
+	
+		var pieceFixture = new b2FixtureDef;
+		pieceFixture.density = 1;
+		pieceFixture.restitution = .1;
+		pieceFixture.isSensor = true;
+		pieceFixture.shape = new b2PolygonShape;
+		
+		var pWidth =  (skin.getBounds().width) / SCALE;
+		var pHeight = (skin.getBounds().height) / SCALE;
+		var cornerFudge = 0; //8/SCALE;
+
+/*
+		var p1 = new b2Vec2(-pWidth + cornerFudge, pHeight);
+		var p2 = new b2Vec2(-pWidth, pHeight - cornerFudge);
+		var p3 = new b2Vec2(-pWidth, -(pHeight) + cornerFudge);
+		var p4 = new b2Vec2(-pWidth + cornerFudge, -pHeight);
+		var p5 = new b2Vec2(pWidth - cornerFudge, -pHeight);
+		var p6 = new b2Vec2(pWidth, -(pHeight) + cornerFudge);
+		var p7 = new b2Vec2(pWidth, pHeight - cornerFudge);
+		var p8 = new b2Vec2(pWidth - cornerFudge, pHeight);
+
+
+		var p1 = new b2Vec2(-pWidth + cornerFudge, pHeight);
+		var p2 = new b2Vec2(-pWidth, pHeight - cornerFudge);
+		var p3 = new b2Vec2(-pWidth, -(pHeight) + cornerFudge);
+		var p4 = new b2Vec2(-pWidth + cornerFudge, -pHeight);
+		var p5 = new b2Vec2(pWidth - cornerFudge, -pHeight);
+		var p6 = new b2Vec2(pWidth, -(pHeight) + cornerFudge);
+		var p7 = new b2Vec2(pWidth, pHeight - cornerFudge);
+		var p8 = new b2Vec2(pWidth - cornerFudge, pHeight);
+		
+		
+		pieceFixture.shape.SetAsArray([p1,p2,p3,p4,p5, p6, p7, p8]);*/
+		
+		pieceFixture.shape.SetAsBox((skin.width/2) / SCALE, (skin.height/2) / SCALE);
+		var pieceBodyDef = new b2BodyDef;
+		pieceBodyDef.type = b2Body.b2_staticBody;
+		pieceBodyDef.position.x = (skin.x + skin.width/2)  / SCALE;
+		pieceBodyDef.position.y = (skin.y - skin.height/2) / SCALE;
+		var piece = world.CreateBody(pieceBodyDef);
+		piece.CreateFixture(pieceFixture);
+
+		// assign actor
+		var actor = new actorObject(piece, skin);
+		piece.SetUserData(actor);  // set the actor as user data of the body so we can use it later: body.GetUserData()
+		bodies.push(piece);
+
 	}
 
 	var createTeleportor = function(skin) {
@@ -1179,6 +1250,7 @@ var box2d = (function() {
 		createPink: createPink,
 		createChocoBot: createChocoBot,
 		createSign: createSign,
+		createButton: createButton,
 		createTeleportor: createTeleportor,
 		createTrigger: createTrigger,
 		createPhysicsBorder: createPhysicsBorder,

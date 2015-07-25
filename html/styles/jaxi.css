@@ -40,7 +40,7 @@ body
     height:768px;
 	/*background-image: url("../assets/images/junkyard/background.png");*/
 
- 	background-image:  url("../assets/images/junkyard/background.png");
+ 	/*background-image:  url("../assets/images/junkyard/background.png");*/
     background-size:   cover;                      /* <------ */
     background-repeat: no-repeat;
     background-position: center center; 	
